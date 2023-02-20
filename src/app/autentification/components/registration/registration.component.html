@@ -1,0 +1,158 @@
+<div class="center bkg-image-auth">
+  <div class="card-wrapper-auth card-wrapper-registration w-700-auth">
+    <div class="desc-medium">
+      Fill out the form to <b> register.</b>
+    </div>
+    <br />
+    <form #registrationForm="ngForm" autocomplete="off">
+      <div class="form-group">
+        <mat-form-field appearance="outline">
+          <mat-label>E-mail adress</mat-label>
+          <input
+            matInput
+            type="email"
+            id="email"
+            name="email"
+            [(ngModel)]="user.email"
+            #email="ngModel"
+            required
+            pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$"
+          />
+        </mat-form-field>
+      </div>
+
+      <div class="grid-2">
+        <div class="form-group">
+          <mat-form-field appearance="outline">
+            <mat-label>Password</mat-label>
+            <input
+              matInput
+              type="password"
+              id="lozinka"
+              name="lozinka"
+              [(ngModel)]="user.password"
+              #lozinka="ngModel"
+              required
+            />
+          </mat-form-field>
+        </div>
+        <div class="form-group">
+          <mat-form-field appearance="outline">
+            <mat-label>Repeat password</mat-label>
+            <input
+              matInput
+              type="password"
+              id="lozinka2"
+              name="lozinka2"
+              [(ngModel)]="user.password2"
+              #lozinka2="ngModel"
+              required
+            />
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="grid-2">
+        <div class="form-group">
+          <mat-form-field appearance="outline">
+            <mat-label>Name</mat-label>
+            <input
+              matInput
+              type="text"
+              id="ime"
+              name="ime"
+              [(ngModel)]="user.name"
+              required
+            />
+          </mat-form-field>
+        </div>
+        <div class="form-group">
+          <mat-form-field appearance="outline">
+            <mat-label>Last Name</mat-label>
+            <input
+              matInput
+              type="text"
+              id="prezime"
+              name="prezime"
+              [(ngModel)]="user.lastName"
+              required
+            />
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="grid-2">
+        <div class="form-group">
+          <mat-form-field appearance="outline">
+            <mat-label>Phone Number</mat-label>
+            <input
+              required
+              matInput
+              type="text"
+              id="brojTelefona"
+              name="brojTelefona"
+              [(ngModel)]="user.phoneNumber"
+              #brojTelefona="ngModel"
+              pattern="([+]?\d{1,2}[.-\s]?)?(\d{3}[.-]?){2}\d{3}"
+            />
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="form-group">
+        <mat-form-field appearance="outline">
+          <mat-label
+            >Adress (Example: Novi Sad, Bulevar Oslobodjenja 13)</mat-label
+          >
+
+          <input
+            required
+            matInput
+            type="text"
+            id="adresa"
+            name="adresa"
+            [(ngModel)]="user.adress"
+          />
+        </mat-form-field>
+      </div>
+      <div class="form-group">
+        <mat-form-field appearance="outline">
+          <mat-label>Identifikator</mat-label>
+          <input
+            matInput
+            type="text"
+            id="korisnickoIme"
+            name="korisnickoIme"
+            [(ngModel)]="user.username"
+            required
+          />
+        </mat-form-field>
+      </div>
+
+      <div class="form-group">
+        <mat-form-field appearance="outline">
+          <mat-label>Date of birth</mat-label>
+          <input
+            matInput
+            type="date"
+            id="datumRodjenja"
+            name="datumRodjenja"
+            [(ngModel)]="user.dateBirth"
+            required
+          />
+        </mat-form-field>
+      </div>
+
+      <div class="center">
+        <button class="primary-button" (click)="register()">
+          Registrujte se
+        </button>
+        <br />
+        <br />
+        <div class="w-300 center">
+          <span class="desc-normal">Imate nalog? &nbsp;</span
+          ><a class="primary-link" [routerLink]="['/auth']"
+            >Ulogujte se ovde
+          </a>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

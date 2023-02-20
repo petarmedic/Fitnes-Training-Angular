@@ -1,0 +1,57 @@
+<div class="center bkg-image-auth">
+  <div class="card-wrapper-auth w-500">
+    <div class="h1">
+      <h2 class="h4-bold">Welcome</h2>
+    </div>
+    <div class="desc-medium">You need to log in.</div>
+    <br />
+    <form #loginForm="ngForm">
+      <div class="form-group">
+        <mat-form-field class="w-300" appearance="outline">
+          <mat-label>Enter your username</mat-label>
+          <input
+            matInput
+            type="text"
+            id="email"
+            name="email"
+            [(ngModel)]="usernameInput"
+            required
+            #email="ngModel"
+          />
+        </mat-form-field>
+      </div>
+      <div class="form-group">
+        <mat-form-field class="w-300" appearance="outline">
+          <mat-label>Enter Password</mat-label>
+          <input
+            matInput
+            type="password"
+            id="password"
+            name="password"
+            [(ngModel)]="passwordInput"
+            #password="ngModel"
+            required
+          />
+        </mat-form-field>
+      </div>
+      <div class="center">
+        <button
+          class="primary-button"
+          [disabled]="!loginForm.valid"
+          (click)="onSubmit()"
+        >
+          Login</button
+        ><br />
+        <div class="w-300 center">
+          <span class="desc-normal">Do not have an account? &nbsp;</span
+          ><a
+            class="primary-link"
+            color="accent"
+            [routerLink]="['/auth/register']"
+            >Register here
+          </a>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

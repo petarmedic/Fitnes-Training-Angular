@@ -1,0 +1,43 @@
+.grid-2 {
+  width: 100%;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.form-group {
+  width: 100%;
+}
+
+mat-form-field {
+  width: 100%;
+}
+
+.bkg-image-auth {
+  margin: 0;
+  width: 100%;
+  height: 76.5vh;
+  padding-top: 15vh;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position-y: center;
+}
+
+.center {
+  margin: 0 auto;
+  text-align: center;
+}
+
+.flex-spacebetween {
+  justify-content: space-between;
+  align-items: center;
+  margin: 0 auto;
+}
+
+.mb-2 {
+  margin-bottom: 20px;
+}
+
+.card-wrapper-auth {
+  min-height: auto;
+}

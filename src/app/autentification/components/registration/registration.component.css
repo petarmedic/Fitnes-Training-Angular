@@ -1,0 +1,24 @@
+.h1 {
+  display: inline-flex;
+}
+
+.bkg-image-auth {
+  margin: 0;
+  width: 100%;
+  height: 91.5vh;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position-y: center;
+}
+
+.center {
+  margin: 0 auto;
+  text-align: center;
+}
+
+.primary-link {
+  font-weight: 500;
+  color: orange;
+  background-color: transparent;
+  text-decoration: none;
+}

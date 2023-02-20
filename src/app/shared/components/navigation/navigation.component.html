@@ -1,0 +1,37 @@
+<mat-sidenav-container class="example-container" position="end">
+  <mat-sidenav-content position="end">
+    <mat-toolbar>
+      <div>
+        <button
+          *ngIf="roleUser || roleAdmin"
+          mat-button
+          [matMenuTriggerFor]="beforeMenu"
+        >
+          <mat-icon>account_circle</mat-icon>
+        </button>
+        <mat-menu #beforeMenu="matMenu" xPosition="before">
+          <button mat-menu-item [routerLink]="['/user/user']">Profil</button>
+          <button mat-menu-item [routerLink]="['/auth']" (click)="logout()">
+            Logout
+          </button>
+        </mat-menu>
+
+        <!--  -->
+      </div>
+      <span class="menu-spacer"></span>
+
+      <button
+        mat-button
+        *ngIf="!roleUser && !roleAdmin"
+        [routerLink]="['/auth']"
+        routerLinkActive="active-route"
+      >
+        Prijava
+      </button>
+    </mat-toolbar>
+
+    <div class="mt-8vh">
+      <router-outlet></router-outlet>
+    </div>
+  </mat-sidenav-content>
+</mat-sidenav-container>

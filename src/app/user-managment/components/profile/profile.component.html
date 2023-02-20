@@ -1,0 +1,93 @@
+<div class="center bkg-image-auth">
+  <div class="card-wrapper-auth w-500">
+
+    <h4 class="h4-bold">Profil korisnika</h4>
+    <p class="orange-color desc-bold">{{ user.name + " " + user.lastName }}</p>
+    <br />
+    
+    <form>
+      
+      <mat-form-field>
+        <input
+          matInput
+          placeholder="Ime"
+          required
+          type="text"
+          [(ngModel)]="user.name"
+          name="name"
+          readonly
+        />
+        
+      </mat-form-field>
+      <mat-form-field>
+        <input
+          matInput
+          required
+          placeholder="Prezime"
+          type="text"
+          [(ngModel)]="user.lastName"
+          name="lastName"
+          readonly
+        />
+      </mat-form-field>
+
+      <mat-form-field class="w-100">
+        <input
+          matInput
+          required
+          placeholder="Adresa"
+          type="text"
+          [(ngModel)]="user.adress"
+          name="adresa"
+          readonly
+        />
+      </mat-form-field>
+
+      <mat-form-field class="w-100">
+        <input
+          matInput
+          required
+          placeholder="Email"
+          type="text"
+          [(ngModel)]="user.email"
+          name="email"
+          readonly
+        />
+      </mat-form-field>
+
+      <mat-form-field class="w-100">
+        <input
+          matInput
+          required
+          placeholder="Korisnicko ime"
+          type="text"
+          [(ngModel)]="user.username"
+          name="korisnickoIme"
+          readonly
+        />
+      </mat-form-field>
+
+      <mat-form-field>
+        <input
+          matInput
+          required
+          placeholder="Broj telefona"
+          type="text"
+          [(ngModel)]="user.phoneNumber"
+          name="brojTelefona"
+          pattern="([+]?\d{1,2}[.-\s]?)?(\d{3}[.-]?){2}\d{3}"
+          readonly
+        />
+      </mat-form-field>
+
+      <div class="grid-2">
+        <button mat-button (click)="goBack()" class="primary-link">
+          <mat-icon> chevron_left </mat-icon>Nazad
+        </button>
+        <button mat-button (click)="zahtevajKarticu()" class="primary-link">
+          <mat-icon> save </mat-icon>Zahtevaj karticu (SAMO ZA KORISNIKE)
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
