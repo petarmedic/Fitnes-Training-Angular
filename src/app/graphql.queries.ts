@@ -16,26 +16,26 @@ const KREIRAJ_KOMENTAR = gql`
   }
 `;
 
-const KREIRAJ_TRENING = gql`
-  mutation kreirajTrening(
-    $cena: Int!
-    $nivo: String!
-    $trajanje: Int!
-    $trener: String!
-    $vrsta: String!
-    $opis: String!
-    $naziv: String!
-    $slika: String
+const CREATE_TRAINING = gql`
+  mutation createTraining(
+    $prices: Int!
+    $levelTraining: String!
+    $trainingDuration: Int!
+    $trainer: String!
+    $trainingKind: String!
+    $description: String!
+    $name: String!
+    $photo: String
   ) {
-    kreirajTrening(
-      cena: $cena
-      nivo: $nivo
-      trajanje: $trajanje
-      trener: $trener
-      vrsta: $vrsta
-      opis: $opis
-      naziv: $naziv
-      slika: $slika
+    createTraining(
+      prices: $prices
+      levelTraining: $levelTraining
+      trainingDuration: $trainingDuration
+      trainer: $trainer
+      trainingKind: $trainingKind
+      description: $description
+      name: $name
+      photo: $photo
     )
   }
 `;
@@ -72,9 +72,9 @@ const OBRADI_KOMENTAR = gql`
   }
 `;
 
-const KREIRAJ_SALU = gql`
-  mutation kreirajSalu($kapacitet: Int!, $oznaka: String!) {
-    kreirajSalu(kapacitet: $kapacitet, oznaka: $oznaka)
+const CREATE_WORKOUTROOM = gql`
+  mutation createWorkoutRoom($capacity: Int!, $name: String!) {
+    createWorkoutRoom(capacity: $capacity, name: $name)
   }
 `;
 
@@ -110,23 +110,23 @@ const OBRISI_SALU = gql`
 
 const REGISTER = gql`
   mutation register(
-    $datumRodjenja: String!
-    $adresa: String!
-    $lozinka: String!
-    $ime: String!
-    $prezime: String!
-    $korisnickoIme: String!
-    $brojTelefona: String!
+    $dateBirth: String!
+    $adress: String!
+    $password: String!
+    $name: String!
+    $lastName: String!
+    $username: String!
+    $phoneNumber: String!
     $email: String!
   ) {
     register(
-      datumRodjenja: $datumRodjenja
-      adresa: $adresa
-      lozinka: $lozinka
-      ime: $ime
-      prezime: $prezime
-      korisnickoIme: $korisnickoIme
-      brojTelefona: $brojTelefona
+      dateBirth: $dateBirth
+      adress: $adress
+      password: $password
+      name: $name
+      lastName: $lastName
+      username: $username
+      phoneNumber: $phoneNumber
       email: $email
     )
   }
@@ -190,6 +190,8 @@ const KOMENTARI_ZA_ODOBRENJE = gql`
   }
 `;
 
+
+
 const SALE = gql`
   query sale {
     sale {
@@ -204,31 +206,31 @@ const SALE = gql`
   }
 `;
 
-const TRENINZI = gql`
-  query treninzi($filter: String, $cenaOd: Int, $cenaDo: Int, $sort: String) {
-    treninzi(filter: $filter, cenaOd: $cenaOd, cenaDo: $cenaDo, sort: $sort) {
+const TRAININGS = gql`
+  query trainings($filter: String, $priceFrom: Int, $priceTo: Int, $sort: String) {
+    trainings(filter: $filter, priceFrom: $priceFrom, priceTo: $priceTo, sort: $sort) {
       id
-      cena
-      naziv
-      nivoTreninga
-      opis
-      slika
-      trajanjeTreninga
-      trener
-      vrstaTreninga
-      komentars {
+      prices
+      name
+      levelTraining
+      description
+      photo
+      trainingDuration
+      trainer
+      trainingKind
+      comments {
         id
       }
-      terminOdrzavanjaTreningas {
+      trainingSchedules {
         id
-        vreme
+        dateTime
       }
-      tipTreningas {
+      trainingType {
         id
-        ime
-        opis
+        name
+        description
       }
-      zeljas {
+      wishs {
         id
       }
     }
@@ -313,6 +315,62 @@ const PROFIL = gql`
     }
   }
 `;
+const USER = gql`
+  query user($idUser: Int!) {
+    user (idUser: $idUser){
+      name
+      lastName
+      email
+      adress
+      phoneNumber
+      dateBirth
+      username
+    }
+  }
+`;
+const ALL_USERS = gql`
+query allUsers{
+  allUsers{
+    name
+    lastName
+    email
+    adress
+    phoneNumber
+    dateBirth
+    id
+  }
+}
+`;
+
+const EDIT_USER = gql`
+  mutation editUser(
+    $idUser: Int!
+    $name: String!
+    $lastName: String!
+    $email: String!
+    $adress: String!
+    $phoneNumber: String!
+    $dateBirth: String!
+    $username: String!
+  ) {
+    editUser(
+      idUser: $idUser
+      name: $name
+      lastName: $lastName
+      email: $email
+      adress: $adress
+      phoneNumber: $phoneNumber
+      dateBirth: $dateBirth
+      username: $username
+    )
+  }
+`;
+
+const DELETE_USER = gql`
+  mutation deleteUser($idUser: Int!) {
+    deleteUser(idUser: $idUser)
+  }
+`;
 
 const ZAHTEVI_ZA_KARTICU = gql`
   query zahteviZaKarticu {
@@ -342,18 +400,21 @@ export {
   ZAHTEVAJ_KARTICU,
   REGISTER,
   LOGIN,
+  ALL_USERS,
+  USER,
+  EDIT_USER,
+  DELETE_USER,
   KOMENTARI_ZA_TRENING,
   KOMENTARI_ZA_ODOBRENJE,
-  SALE,
-  TRENINZI,
+  TRAININGS,
   STATISTIKA,
   TRENING,
   PREGLED_REZERVACIJA,
   KREIRAJ_KOMENTAR,
   OBRADI_KOMENTAR,
-  KREIRAJ_SALU,
+  CREATE_WORKOUTROOM,
   OBRISI_SALU,
-  KREIRAJ_TRENING,
+  CREATE_TRAINING,
   IZMENI_TRENING,
   DODAJ_TERMIN,
   KORPA,

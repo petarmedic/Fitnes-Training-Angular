@@ -1,0 +1,47 @@
+<div class="center bkg-image-auth">
+    <br>
+    <br>
+    <div class="card-wrapper-auth card-wrapper-registration w-1500-auth">
+    
+      <div class="desc-medium">Fill out the form to create <b>workout room.</b></div>
+      <br />
+      <form #registrationForm="ngForm" autocomplete="off">
+        <div class="form-group">
+          <mat-form-field appearance="outline">
+            <mat-label>Capacity</mat-label>
+            <input
+              matInput
+              type="number"
+              id="capacity"
+              name="capacity"
+              [(ngModel)]="capacity"
+              required
+            />
+          </mat-form-field>
+        </div>
+  
+        <div class="grid-2">
+          <div class="form-group">
+            <mat-form-field appearance="outline">
+              <mat-label>Name</mat-label>
+              <input
+                matInput
+                type="text"
+                id="name"
+                name="name"
+                [(ngModel)]="name"
+                required
+              />
+            </mat-form-field>
+          </div>
+        </div>
+  
+        <div class="center">
+          <button class="primary-button" (click)="kreirajSalu()">
+            Kreiraj salu
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+  

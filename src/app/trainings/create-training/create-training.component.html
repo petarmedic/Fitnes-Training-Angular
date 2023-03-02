@@ -1,0 +1,137 @@
+<div class="center bkg-image-auth">
+    <div class="card-wrapper-auth card-wrapper-registration w-1500-auth">
+      <div class="desc-medium">Fill out the form to create <b>training.</b></div>
+      <br />
+      <form #registrationForm="ngForm" autocomplete="off">
+        <div class="form-group">
+          <mat-form-field appearance="outline">
+            <mat-label>Prices</mat-label>
+            <input
+              matInput
+              type="number"
+              id="prices"
+              name="prices"
+              [(ngModel)]="prices"
+              required
+            />
+          </mat-form-field>
+        </div>
+  
+        <div class="grid-2">
+          <div class="form-group">
+            <mat-form-field appearance="outline">
+              <mat-label>Training level</mat-label>
+              <input
+                matInput
+                type="text"
+                id="levelTraining"
+                name="levelTraining"
+                [(ngModel)]="levelTraining"
+                required
+              />
+            </mat-form-field>
+          </div>
+        </div>
+  
+        <div class="form-group">
+          <mat-form-field appearance="outline">
+            <mat-label>Training duration</mat-label>
+            <input
+              matInput
+              type="number"
+              id="trainingDuration"
+              name="trainingDuration"
+              [(ngModel)]="trainingDuration"
+              required
+            />
+          </mat-form-field>
+        </div>
+  
+        <div class="grid-2">
+          <div class="form-group">
+            <mat-form-field appearance="outline">
+              <mat-label>Trainer</mat-label>
+              <input
+                matInput
+                type="text"
+                id="trainer"
+                name="trainer"
+                [(ngModel)]="trainer"
+                required
+              />
+            </mat-form-field>
+          </div>
+        </div>
+  
+        <div class="grid-2">
+          <div class="form-group">
+            <mat-form-field appearance="outline">
+              <mat-label>Training kind</mat-label>
+              <input
+                matInput
+                type="text"
+                id="trainingKind"
+                name="trainingKind"
+                [(ngModel)]="trainingKind"
+                required
+              />
+            </mat-form-field>
+          </div>
+        </div>
+  
+        <div class="grid-2">
+          <div class="form-group">
+            <mat-form-field appearance="outline">
+              <mat-label>Description</mat-label>
+              <input
+                matInput
+                type="text"
+                id="description"
+                name="description"
+                [(ngModel)]="description"
+                required
+              />
+            </mat-form-field>
+          </div>
+        </div>
+  
+        <div class="grid-2">
+          <div class="form-group">
+            <mat-form-field appearance="outline">
+              <mat-label>Name</mat-label>
+              <input
+                matInput
+                type="text"
+                id="name"
+                name="name"
+                [(ngModel)]="name"
+                required
+              />
+            </mat-form-field>
+          </div>
+        </div>
+  
+        <div class="grid-2">
+          <div class="form-group">
+            <mat-form-field appearance="outline">
+              <mat-label>Link photo</mat-label>
+              <input
+                matInput
+                type="text"
+                id="photo"
+                name="photo"
+                [(ngModel)]="photo"
+              />
+            </mat-form-field>
+          </div>
+        </div>
+  
+        <div class="center">
+          <button class="primary-button" (click)="createTraining()">
+            Kreiraj trening
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+  

@@ -30,6 +30,52 @@
       </button>
     </mat-toolbar>
 
+    <button
+    mat-button
+    *ngIf="!!roleAdmin"
+    [routerLink]="['/user/all-users']"
+    routerLinkActive="active-route"
+  >
+    Users
+  </button>
+
+  <button
+  mat-button
+  *ngIf="!!roleAdmin"
+  [routerLink]="['/workout-room/all']"
+  routerLinkActive="active-route"
+>
+  Workout Rooms
+  </button>
+
+  <button
+  mat-button
+  *ngIf="!!roleAdmin"
+  [routerLink]="['/workout-room/create']"
+  routerLinkActive="active-route"
+>
+  Create Workout Room
+</button>
+
+<button
+  mat-button
+  *ngIf="!!roleAdmin"
+  [routerLink]="['/trainings/all']"
+  routerLinkActive="active-route"
+>
+  All trainings
+</button>
+
+<button
+  mat-button
+  *ngIf="!!roleAdmin"
+  [routerLink]="['/trainings/create']"
+  routerLinkActive="active-route"
+>
+  Create training
+</button>
+
+
     <div class="mt-8vh">
       <router-outlet></router-outlet>
     </div>

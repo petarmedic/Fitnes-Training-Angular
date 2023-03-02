@@ -1,0 +1,87 @@
+<div class="table-wrapper box-shadow">
+    <mat-table [dataSource]="dataSource">
+      <ng-container matColumnDef="name">
+        <mat-header-cell *matHeaderCellDef>Name</mat-header-cell>
+        <mat-cell *matCellDef="let element" data-label="Name">{{
+          element.name
+        }}</mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="lastName">
+        <mat-header-cell mat-header-cell *matHeaderCellDef
+          >Last name</mat-header-cell
+        >
+        <mat-cell mat-cell *matCellDef="let element" data-label="Last name">{{
+          element.lastName
+        }}</mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="email">
+        <mat-header-cell mat-header-cell *matHeaderCellDef>Email</mat-header-cell>
+        <mat-cell mat-cell *matCellDef="let element" data-label="Email">{{
+          element.email
+        }}</mat-cell>
+      </ng-container>
+  
+      <ng-container matColumnDef="adress">
+        <mat-header-cell mat-header-cell *matHeaderCellDef
+          >Adress</mat-header-cell
+        >
+        <mat-cell mat-cell *matCellDef="let element" data-label="Adress">{{
+          element.adress
+        }}</mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="phoneNumber">
+        <mat-header-cell mat-header-cell *matHeaderCellDef
+          >Phone Number</mat-header-cell
+        >
+        <mat-cell mat-cell *matCellDef="let element" data-label="Phone Number">{{
+          element.phoneNumber
+        }}</mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="dateBirth">
+        <mat-header-cell mat-header-cell *matHeaderCellDef
+          >Date of Birth</mat-header-cell
+        >
+        <mat-cell mat-cell *matCellDef="let element" data-label="Date of Birth">{{
+          element.dateBirth
+        }}</mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="edit">
+        <mat-header-cell *matHeaderCellDef>Edit</mat-header-cell>
+        <mat-cell *matCellDef="let element" data-label="Edit user">
+          <button
+            (click)="editUser(element.id)"
+            mat-button
+            matTooltip="Edit user"
+          >
+            <mat-icon>edit</mat-icon>
+          </button>
+        </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="delete">
+        <mat-header-cell *matHeaderCellDef>Delete</mat-header-cell>
+        <mat-cell *matCellDef="let element" data-label="Delete">
+          <button
+            (click)="deleteUser(element.id)"
+            mat-button
+            matTooltip="Delete User"
+          >
+            <mat-icon>delete</mat-icon>
+          </button>
+        </mat-cell>
+      </ng-container>
+
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+    </mat-table>
+  
+    <mat-paginator
+      [pageSizeOptions]="[10, 20, 30]"
+      showFirstLastButtons
+    ></mat-paginator>
+  </div>
+  

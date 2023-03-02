@@ -10,6 +10,8 @@ import { SharedModule } from "./shared/shared.module";
 import { CoreModule } from "./core/core.module";
 import { NgxSpinnerService } from "ngx-spinner";
 import { GraphQLModule } from "./graphql.module";
+import { WorkoutRoomModule } from "./workout-room/workout-room.module";
+import { TrainingsModule } from "./trainings/trainings.module";
 
 
 @NgModule({
@@ -25,8 +27,10 @@ import { GraphQLModule } from "./graphql.module";
     BrowserAnimationsModule,
     HttpClientModule,
     SharedModule,
+    WorkoutRoomModule,
     CoreModule,
     GraphQLModule,
+    TrainingsModule,
   ],
   providers: [NgxSpinnerService],
   bootstrap: [AppComponent],

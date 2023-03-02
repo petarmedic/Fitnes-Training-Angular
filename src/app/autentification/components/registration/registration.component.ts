@@ -71,13 +71,13 @@ export class RegistrationComponent implements OnInit {
         .mutate({
           mutation: REGISTER,
           variables: {
-            datumRodjenja: this.user.dateBirth,
-            adresa: this.user.adress,
-            lozinka: this.user.password,
-            ime: this.user.name,
-            prezime: this.user.lastName,
-            korisnickoIme: this.user.username,
-            brojTelefona: this.user.phoneNumber,
+            dateBirth: this.user.dateBirth,
+            adress: this.user.adress,
+            password: this.user.password,
+            name: this.user.name,
+            lastName: this.user.lastName,
+            username: this.user.username,
+            phoneNumber: this.user.phoneNumber,
             email: this.user.email,
           },
         })

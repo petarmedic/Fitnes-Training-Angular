@@ -6,9 +6,11 @@ import { AngularMaterialModule } from "../angular-material/angular-material.modu
 import { FormsModule } from "@angular/forms";
 import { ProfileComponent } from "./components/profile/profile.component";
 import { ClanskeKarticeZaOdobrenjeComponent } from './components/clanske-kartice-za-odobrenje/clanske-kartice-za-odobrenje.component';
+import { AllUsersComponent } from './components/all-users/all-users.component';
+import { EditUserComponent } from './components/edit-user/edit-user.component';
 
 @NgModule({
-  declarations: [ProfileComponent, ClanskeKarticeZaOdobrenjeComponent],
+  declarations: [ProfileComponent, ClanskeKarticeZaOdobrenjeComponent, AllUsersComponent, EditUserComponent],
   imports: [
     CommonModule,
     UserManagmentRoutingModule,

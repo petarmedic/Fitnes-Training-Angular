@@ -9,6 +9,13 @@
   width: 100%;
 }
 
+.w-100{
+  margin: auto;
+  width: 50%;
+  padding: 10px;
+  text-align: center;
+}
+
 mat-form-field {
   width: 100%;
 }

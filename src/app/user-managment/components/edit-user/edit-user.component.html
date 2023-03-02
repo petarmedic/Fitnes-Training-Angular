@@ -1,0 +1,124 @@
+<div class="center bkg-image-auth">
+    <div class="card-wrapper-auth card-wrapper-registration w-1700-auth">
+      <div class="desc-medium">Fill out the form to change<b> the user.</b></div>
+      <br />
+      <form #registrationForm="ngForm" autocomplete="off">
+        <div class="form-group">
+          <mat-form-field appearance="outline">
+            <mat-label>Name</mat-label>
+            <input
+              matInput
+              type="text"
+              id="name"
+              name="name"
+              [(ngModel)]="name"
+              required
+            />
+          </mat-form-field>
+        </div>
+  
+        <div class="grid-2">
+          <div class="form-group">
+            <mat-form-field appearance="outline">
+              <mat-label>Last Name</mat-label>
+              <input
+                matInput
+                type="text"
+                id="lastName"
+                name="lastName"
+                [(ngModel)]="lastName"
+                required
+              />
+            </mat-form-field>
+          </div>
+        </div>
+  
+        <div class="form-group">
+          <mat-form-field appearance="outline">
+            <mat-label>Email</mat-label>
+            <input
+              matInput
+              type="text"
+              id="email"
+              name="email"
+              [(ngModel)]="email"
+              required
+            />
+          </mat-form-field>
+        </div>
+  
+        <div class="grid-2">
+          <div class="form-group">
+            <mat-form-field appearance="outline">
+              <mat-label>Adress</mat-label>
+              <input
+                matInput
+                type="text"
+                id="adress"
+                name="adress"
+                [(ngModel)]="adress"
+                required
+              />
+            </mat-form-field>
+          </div>
+        </div>
+  
+        <div class="grid-2">
+          <div class="form-group">
+            <mat-form-field appearance="outline">
+              <mat-label>Phone Number</mat-label>
+              <input
+                matInput
+                type="text"
+                id="phoneNumber"
+                name="phoneNumber"
+                [(ngModel)]="phoneNumber"
+                required
+              />
+            </mat-form-field>
+          </div>
+        </div>
+  
+        <div class="grid-2">
+          <div class="form-group">
+            <mat-form-field appearance="outline">
+              <mat-label>Date of birth</mat-label>
+              <input
+                matInput
+                type="text"
+                id="dateBirth"
+                name="dateBirth"
+                [(ngModel)]="dateBirth"
+                required
+              />
+            </mat-form-field>
+          </div>
+        </div>
+  
+        <div class="grid-2">
+          <div class="form-group">
+            <mat-form-field appearance="outline">
+              <mat-label>Username</mat-label>
+              <input
+                matInput
+                type="text"
+                id="username"
+                name="username"
+                [(ngModel)]="username"
+                required
+              />
+            </mat-form-field>
+          </div>
+        </div>
+  
+
+  
+        <div class="center">
+          <button class="primary-button" (click)="editUser()">
+            Edit User
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+  

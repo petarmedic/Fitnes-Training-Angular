@@ -1,0 +1,17 @@
+.h1 {
+    display: inline-flex;
+  }
+  
+ 
+
+  .primary-link {
+    font-weight: 500;
+    color: orange;
+    background-color: transparent;
+    text-decoration: none;
+  }
+  
+  .center {
+    margin: 0 auto;
+    text-align: center;
+  }

@@ -24,6 +24,17 @@ const routes: Routes = [
       ),
   },
 
+  {
+    path: "workout-room",
+    loadChildren: () =>
+      import("./workout-room/workout-room.module").then((mod) => mod.WorkoutRoomModule),
+  },
+  {
+    path: "trainings",
+    loadChildren: () =>
+      import("./trainings/trainings.module").then((mod) => mod.TrainingsModule),
+  },
+
   { path: "page-not-found", component: PageNotFoundComponent },
   { path: "**", redirectTo: "page-not-found", pathMatch: "full" },
 ];
