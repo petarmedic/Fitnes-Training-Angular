@@ -4,24 +4,29 @@ import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
 import { Apollo } from 'apollo-angular';
 import { ToastrService } from 'ngx-toastr';
-import { DELETE_WORKOUT_ROOM, WORKOUT_ROOMS } from 'src/app/graphql.queries';
+import { COMMENT_FOR_APPROVAL, PROCCES_COMMENT } from 'src/app/graphql.queries';
 
 @Component({
-  selector: 'app-workout-rooms',
-  templateUrl: './workout-rooms.component.html',
-  styleUrls: ['./workout-rooms.component.css']
+  selector: 'app-comments-for-approval',
+  templateUrl: './comments-for-approval.component.html',
+  styleUrls: ['./comments-for-approval.component.css']
 })
-export class WorkoutRoomsComponent implements OnInit {
-  workoutRooms: any = null;
+export class CommentsForApprovalComponent implements OnInit {
+  comments: any = null;
+
   displayedColumns: string[] = [
-    "capacity",
-    "name",
-    "delete",
+    "rate",
+    "text",
+    "datePost",
+    "user",
+    "accept",
+    "reject",
   ];
-  dataSource = new MatTableDataSource<any>(this.workoutRooms);
+
+  dataSource = new MatTableDataSource<any>(this.comments);
 
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
-  
+
   constructor(
     private router: Router,
     private toastr: ToastrService,
@@ -31,12 +36,13 @@ export class WorkoutRoomsComponent implements OnInit {
   ngOnInit(): void {
     this.apollo
       .watchQuery<any>({
-        query: WORKOUT_ROOMS,
+        query: COMMENT_FOR_APPROVAL,
       })
       .valueChanges.subscribe(
         (response) => {
-          console.log(response.data);
-          const res = response.data.workoutRooms;
+          const res = response.data.commentForApproval;
+          console.log(res);
+          this.comments = res;
           this.dataSource = new MatTableDataSource<any>(res);
           this.dataSource.paginator = this.paginator;
         },
@@ -46,29 +52,27 @@ export class WorkoutRoomsComponent implements OnInit {
       );
   }
 
-  delete(id) {
-    console.log(id);
+
+  process(id, process) {
     this.apollo
       .mutate({
-        mutation: DELETE_WORKOUT_ROOM,
+        mutation: PROCCES_COMMENT,
         variables: {
-          idWorkoutRoom: id,
+          idComment: id,
+          approved: process,
         },
       })
       .subscribe(
         (data) => {
-          this.toastr.success("Delete!");
-          this.workoutRooms = this.workoutRooms.filter((k) => k.id !== id);
-          this.dataSource = new MatTableDataSource<any>(this.workoutRooms);
+          this.toastr.success("Processed!");
+          this.comments = this.comments.filter((k) => k.id !== id);
+          this.dataSource = new MatTableDataSource<any>(this.comments);
           this.dataSource.paginator = this.paginator;
         },
         (error) => {
-          this.toastr.error(
-            "It is not possible to delete the hall to which trainings or appointments are connected!"
-          );
+          this.toastr.error("there was an error sending the query", error);
         }
       );
   }
-
 
 }

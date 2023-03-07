@@ -1,0 +1,65 @@
+<div class="table-wrapper box-shadow">
+    <mat-table [dataSource]="dataSource">
+      <ng-container matColumnDef="rate">
+        <mat-header-cell *matHeaderCellDef>Rate</mat-header-cell>
+        <mat-cell *matCellDef="let element" data-label="Rate">{{
+          element.rate
+        }}</mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="text">
+        <mat-header-cell mat-header-cell *matHeaderCellDef>Text</mat-header-cell>
+        <mat-cell mat-cell *matCellDef="let element" data-label="Text">{{
+          element.text
+        }}</mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="datePost">
+        <mat-header-cell mat-header-cell *matHeaderCellDef>Date post</mat-header-cell>
+        <mat-cell mat-cell *matCellDef="let element" data-label="Date Post">{{
+          element.datePost
+        }}</mat-cell>
+      </ng-container>
+  
+      <ng-container matColumnDef="user">
+        <mat-header-cell mat-header-cell *matHeaderCellDef
+          >User</mat-header-cell
+        >
+        <mat-cell mat-cell *matCellDef="let element" data-label="User">{{
+          element.anoniman
+            ? "ANONIMNO"
+            : element.user.name + " " + element.user.lastName
+        }}</mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="accept">
+        <mat-header-cell *matHeaderCellDef>Accept</mat-header-cell>
+        <mat-cell *matCellDef="let element" data-label="Accept">
+          <button
+            (click)="process(element.id, true)"
+            mat-button
+            matTooltip="Accept comment"
+          >
+            <mat-icon>check</mat-icon>
+          </button>
+        </mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="reject">
+        <mat-header-cell *matHeaderCellDef>Reject</mat-header-cell>
+        <mat-cell *matCellDef="let element" data-label="Reject">
+          <button
+            (click)="process(element.id, false)"
+            mat-button
+            matTooltip="Reject comment"
+          >
+            <mat-icon>delete</mat-icon>
+          </button>
+        </mat-cell>
+      </ng-container>
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+    </mat-table>
+  
+    <mat-paginator
+      [pageSizeOptions]="[10, 20, 30]"
+      showFirstLastButtons
+    ></mat-paginator>
+  </div>
+  

@@ -1,0 +1,42 @@
+.h1 {
+    display: inline-flex;
+  }
+  
+ 
+
+  .primary-link {
+    font-weight: 500;
+    color: orange;
+    background-color: transparent;
+    text-decoration: none;
+  }
+  
+  .center {
+    margin: 0 auto;
+    text-align: center;
+  }
+  
+  .image {
+    transition: transform 0.5s;
+    width: 280px;
+    height: 155px;
+    margin: 0 auto;
+    box-sizing: content-box;
+    margin-bottom: 5%;
+    z-index: 100;
+  }
+  
+  img {
+    height: 100%;
+    width: 100%;
+  }
+  
+  .image:hover {
+    transform: scale(2);
+    cursor: -moz-zoom-in;
+    cursor: -webkit-zoom-in;
+    cursor: zoom-in;
+    
+  }
+
+  

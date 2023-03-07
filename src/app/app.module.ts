@@ -12,6 +12,7 @@ import { NgxSpinnerService } from "ngx-spinner";
 import { GraphQLModule } from "./graphql.module";
 import { WorkoutRoomModule } from "./workout-room/workout-room.module";
 import { TrainingsModule } from "./trainings/trainings.module";
+import { CommentsModule } from "./comments/comments.module";
 
 
 @NgModule({
@@ -31,6 +32,7 @@ import { TrainingsModule } from "./trainings/trainings.module";
     CoreModule,
     GraphQLModule,
     TrainingsModule,
+    CommentsModule,
   ],
   providers: [NgxSpinnerService],
   bootstrap: [AppComponent],

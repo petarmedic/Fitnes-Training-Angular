@@ -1,17 +1,17 @@
 import { gql } from "apollo-angular";
 
-const KREIRAJ_KOMENTAR = gql`
-  mutation kreirajKomentar(
-    $idTrening: Int!
-    $ocena: Int!
-    $anonimno: String!
-    $tekst: String!
+const CREATE_COMMENT = gql`
+  mutation createComment(
+    $idTraining: Int!
+    $rate: Int!
+    $anonymous: String!
+    $text: String!
   ) {
-    kreirajKomentar(
-      idTrening: $idTrening
-      ocena: $ocena
-      anonimno: $anonimno
-      tekst: $tekst
+    createComment(
+      idTraining: $idTraining
+      rate: $rate
+      anonymous: $anonymous
+      text: $text
     )
   }
 `;
@@ -40,35 +40,35 @@ const CREATE_TRAINING = gql`
   }
 `;
 
-const IZMENI_TRENING = gql`
-  mutation izmeniTrening(
-    $idTreninga: Int!
-    $cena: Int!
-    $nivo: String!
-    $trajanje: Int!
-    $trener: String!
-    $vrsta: String!
-    $opis: String!
-    $naziv: String!
-    $slika: String
+const EDIT_TRAINING = gql`
+  mutation editTraining(
+    $idTraining: Int!
+    $prices: Int!
+    $levelTraining: String!
+    $trainingDuration: Int!
+    $trainer: String!
+    $trainingKind: String!
+    $description: String!
+    $name: String!
+    $photo: String
   ) {
-    izmeniTrening(
-      idTreninga: $idTreninga
-      cena: $cena
-      nivo: $nivo
-      trajanje: $trajanje
-      trener: $trener
-      vrsta: $vrsta
-      opis: $opis
-      naziv: $naziv
-      slika: $slika
+    editTraining(
+      idTraining: $idTraining
+      prices: $prices
+      levelTraining: $levelTraining
+      trainingDuration: $trainingDuration
+      trainer: $trainer
+      trainingKind: $trainingKind
+      description: $description
+      name: $name
+      photo: $photo
     )
   }
 `;
 
-const OBRADI_KOMENTAR = gql`
-  mutation obradiKomentar($idKomentar: Int!, $odobreno: Boolean!) {
-    obradiKomentar(idKomentar: $idKomentar, odobreno: $odobreno)
+const PROCCES_COMMENT = gql`
+  mutation processComment($idComment: Int!, $approved: Boolean!) {
+    processComment(idComment: $idComment, approved: $approved)
   }
 `;
 
@@ -78,9 +78,9 @@ const CREATE_WORKOUTROOM = gql`
   }
 `;
 
-const DODAJ_TERMIN = gql`
-  mutation dodajTermin($idTreninga: Int!, $idSala: Int!, $vreme: String!) {
-    dodajTermin(idTreninga: $idTreninga, idSala: $idSala, vreme: $vreme)
+const CREATE_TRAINING_SCHEDULE = gql`
+  mutation createTrainingSchedule($trainingId: Int!, $workoutRoomId: Int!, $dateTime: String!) {
+    createTrainingSchedule(trainingId: $trainingId, workoutRoomId: $workoutRoomId, dateTime: $dateTime)
   }
 `;
 
@@ -102,9 +102,9 @@ const OBRADI_KORPU = gql`
   }
 `;
 
-const OBRISI_SALU = gql`
-  mutation obrisiSalu($idSala: Int!) {
-    obrisiSalu(idSala: $idSala)
+const DELETE_WORKOUT_ROOM = gql`
+  mutation deleteWorkoutRoom($idWorkoutRoom: Int!) {
+    deleteWorkoutRoom(idWorkoutRoom: $idWorkoutRoom)
   }
 `;
 
@@ -144,46 +144,46 @@ const LOGIN = gql`
   }
 `;
 
-const KOMENTARI_ZA_TRENING = gql`
-  query komentariZaTrening($idTrening: Int!) {
-    komentariZaTrening(idTrening: $idTrening) {
+const COMMENT_FOR_TRAININGS = gql`
+  query commentForTraining($idTraining: Int!) {
+    commentForTraining(idTraining: $idTraining) {
       id
-      anoniman
-      ocena
-      tekst
-      vreme
-      korisnik {
-        ime
-        prezime
+      anonymous
+      rate
+      text
+      datePost
+      user {
+        name
+        lastName
       }
-      statusKomentara {
+      statusComments {
         id
-        naziv
+        name
       }
-      trening {
+      training {
         id
       }
     }
   }
 `;
 
-const KOMENTARI_ZA_ODOBRENJE = gql`
-  query komentariZaOdobrenje {
-    komentariZaOdobrenje {
+const COMMENT_FOR_APPROVAL = gql`
+  query commentForApproval {
+    commentForApproval {
       id
-      anoniman
-      ocena
-      tekst
-      vreme
-      korisnik {
-        ime
-        prezime
+      anonymous
+      rate
+      text
+      datePost
+      user {
+        name
+        lastName
       }
-      statusKomentara {
+      statusComments {
         id
-        naziv
+        name
       }
-      trening {
+      training {
         id
       }
     }
@@ -192,15 +192,15 @@ const KOMENTARI_ZA_ODOBRENJE = gql`
 
 
 
-const SALE = gql`
-  query sale {
-    sale {
+const WORKOUT_ROOMS = gql`
+  query workoutRooms {
+    workoutRooms {
       id
-      kapacitet
-      oznaka
-      terminOdrzavanjaTreningas {
+      capacity
+      name
+      trainingSchedule {
         id
-        vreme
+        dateTime
       }
     }
   }
@@ -249,34 +249,34 @@ const STATISTIKA = gql`
   }
 `;
 
-const TRENING = gql`
-  query trening($idTrening: Int!) {
-    trening(idTrening: $idTrening) {
+const TRAINING = gql`
+  query training($idTraining: Int!) {
+    training(idTraining: $idTraining) {
       id
-      cena
-      naziv
-      nivoTreninga
-      opis
-      slika
-      trajanjeTreninga
-      trener
-      vrstaTreninga
-      komentars {
+      prices
+      name
+      levelTraining
+      description
+      photo
+      trainingDuration
+      trainer
+      trainingKind
+      comments {
         id
       }
-      terminOdrzavanjaTreningas {
+      trainingSchedules {
         id
-        vreme
-        sala {
-          oznaka
+        dateTime
+        workoutRoom {
+          name
         }
       }
-      tipTreningas {
+      trainingType {
         id
-        ime
-        opis
+        name
+        description
       }
-      zeljas {
+      wishs {
         id
       }
     }
@@ -404,19 +404,20 @@ export {
   USER,
   EDIT_USER,
   DELETE_USER,
-  KOMENTARI_ZA_TRENING,
-  KOMENTARI_ZA_ODOBRENJE,
+  COMMENT_FOR_TRAININGS,
+  COMMENT_FOR_APPROVAL,
   TRAININGS,
   STATISTIKA,
-  TRENING,
+  TRAINING,
   PREGLED_REZERVACIJA,
-  KREIRAJ_KOMENTAR,
-  OBRADI_KOMENTAR,
+  CREATE_COMMENT,
+  PROCCES_COMMENT,
   CREATE_WORKOUTROOM,
-  OBRISI_SALU,
+  WORKOUT_ROOMS,
+  DELETE_WORKOUT_ROOM,
   CREATE_TRAINING,
-  IZMENI_TRENING,
-  DODAJ_TERMIN,
+  EDIT_TRAINING,
+  CREATE_TRAINING_SCHEDULE,
   KORPA,
   OBRADI_KORPU,
   PROFIL,

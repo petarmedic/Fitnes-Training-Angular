@@ -34,7 +34,11 @@ const routes: Routes = [
     loadChildren: () =>
       import("./trainings/trainings.module").then((mod) => mod.TrainingsModule),
   },
-
+  {
+    path: "comments",
+    loadChildren: () =>
+      import("./comments/comments.module").then((mod) => mod.CommentsModule),
+  },
   { path: "page-not-found", component: PageNotFoundComponent },
   { path: "**", redirectTo: "page-not-found", pathMatch: "full" },
 ];

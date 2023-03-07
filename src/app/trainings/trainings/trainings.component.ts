@@ -32,6 +32,7 @@ export class TrainingsComponent implements OnInit {
     "trainingDuration",
     "view",
     "edit",
+    "addTrainingsSchedule",
   ];
 
   dataSource = new MatTableDataSource<any>(this.trainings);
@@ -94,4 +95,15 @@ export class TrainingsComponent implements OnInit {
       );
   }
 
+  view(id) {
+    this.router.navigate(["trainings/training/" + id]);
+  }
+
+  editTrainings(id) {
+    this.router.navigate(["trainings/edit/" + id]);
+  }
+
+  addTrainingsSchedule(id) {
+    this.router.navigate(["trainings/add-trainings-schedule/" + id]);
+  }
 }

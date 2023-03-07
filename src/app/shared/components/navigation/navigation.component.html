@@ -33,6 +33,15 @@
     <button
     mat-button
     *ngIf="!!roleAdmin"
+    [routerLink]="['/comments/comments-for-approval']"
+    routerLinkActive="active-route"
+  >
+    Comments
+  </button>
+
+    <button
+    mat-button
+    *ngIf="!!roleAdmin"
     [routerLink]="['/user/all-users']"
     routerLinkActive="active-route"
   >

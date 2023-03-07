@@ -1,0 +1,45 @@
+<div class="center bkg-image-auth">
+    <div class="card-wrapper-auth card-wrapper-registration w-1500-auth">
+      <div class="desc-medium">Fill out the form to create <b>training schedule.</b></div>
+      <br />
+      <form #registrationForm="ngForm" autocomplete="off">
+        <div class="form-group">
+          <mat-form-field appearance="outline">
+            <mat-label>Date and time</mat-label>
+            <input
+              matInput
+              type="datetime-local"
+              id="datetime"
+              name="datetime"
+              [(ngModel)]="dateTime"
+              required
+            />
+          </mat-form-field>
+        </div>
+  
+        <div class="form-group">
+          <mat-form-field class="w-100" appearance="outline">
+            <mat-label>Choose workout room</mat-label>
+            <mat-select
+              name="workoutRoomId"
+              [value]="workoutRoomId"
+              [(ngModel)]="workoutRoomId"
+              #tip="ngModel"
+              required
+            >
+              <mat-option *ngFor="let t of workoutRooms" [value]="t.id">
+                {{ t.name }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+  
+        <div class="center">
+          <button class="primary-button" (click)="createTrainingSchedule()">
+            Create training schedule
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+  

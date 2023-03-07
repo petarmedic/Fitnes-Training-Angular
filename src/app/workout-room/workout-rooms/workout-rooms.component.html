@@ -1,1 +1,41 @@
-<p>workout-rooms works!</p>
+<div class="table-wrapper box-shadow">
+    <mat-table [dataSource]="dataSource">
+      <ng-container matColumnDef="capacity">
+        <mat-header-cell *matHeaderCellDef>Capacity</mat-header-cell>
+        <mat-cell *matCellDef="let element" data-label="Capacity">{{
+          element.capacity
+        }}</mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="name">
+        <mat-header-cell mat-header-cell *matHeaderCellDef
+          >Name</mat-header-cell
+        >
+        <mat-cell mat-cell *matCellDef="let element" data-label="Name">{{
+          element.name
+        }}</mat-cell>
+      </ng-container>
+
+  
+      <ng-container matColumnDef="delete">
+        <mat-header-cell *matHeaderCellDef>Delete</mat-header-cell>
+        <mat-cell *matCellDef="let element" data-label="Delete">
+          <button
+            (click)="delete(element.id)"
+            mat-button
+            matTooltip="Delete workout room"
+          >
+            <mat-icon>delete</mat-icon>
+          </button>
+        </mat-cell>
+      </ng-container>
+  
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+    </mat-table>
+  
+    <mat-paginator
+      [pageSizeOptions]="[10, 20, 30]"
+      showFirstLastButtons
+    ></mat-paginator>
+  </div>
+  

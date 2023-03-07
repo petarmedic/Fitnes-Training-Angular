@@ -120,11 +120,24 @@
         </mat-cell>
       </ng-container>
   
+      <ng-container matColumnDef="addTrainingsSchedule">
+        <mat-header-cell *matHeaderCellDef>Add training schedule</mat-header-cell>
+        <mat-cell *matCellDef="let element" data-label="addTrainingsSchedule">
+          <button
+            (click)="addTrainingsSchedule(element.id)"
+            mat-button
+            matTooltip="Add training schedule"
+          >
+            <mat-icon>add</mat-icon>
+          </button>
+        </mat-cell>
+      </ng-container>
+      
       <ng-container matColumnDef="edit">
         <mat-header-cell *matHeaderCellDef>Edit</mat-header-cell>
         <mat-cell *matCellDef="let element" data-label="Edit training">
           <button
-            (click)="editTraining(element.id)"
+            (click)="editTrainings(element.id)"
             mat-button
             matTooltip="Edit training"
           >

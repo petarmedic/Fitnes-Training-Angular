@@ -1,0 +1,98 @@
+<div class="table-wrapper box-shadow">
+    <mat-table [dataSource]="dataSource">
+      <ng-container matColumnDef="rate">
+        <mat-header-cell *matHeaderCellDef>OceRatena</mat-header-cell>
+        <mat-cell *matCellDef="let element" data-label="Rate">{{
+          element.rate
+        }}</mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="text">
+        <mat-header-cell mat-header-cell *matHeaderCellDef>Text</mat-header-cell>
+        <mat-cell mat-cell *matCellDef="let element" data-label="Text">{{
+          element.text
+        }}</mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="datePost">
+        <mat-header-cell mat-header-cell *matHeaderCellDef>Date Post</mat-header-cell>
+        <mat-cell mat-cell *matCellDef="let element" data-label="Date post">{{
+          element.datePost
+        }}</mat-cell>
+      </ng-container>
+  
+      <ng-container matColumnDef="user">
+        <mat-header-cell mat-header-cell *matHeaderCellDef
+          >User</mat-header-cell
+        >
+        <mat-cell mat-cell *matCellDef="let element" data-label="User">{{
+          element.anonymous
+            ? "ANONIMNO"
+            : element.user.name + " " + element.user.lastName
+        }}</mat-cell>
+      </ng-container>
+  
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+    </mat-table>
+  
+    <mat-paginator
+      [pageSizeOptions]="[10, 20, 30]"
+      showFirstLastButtons
+    ></mat-paginator>
+  
+    <div class="center bkg-image-auth">
+      <div class="card-wrapper-auth card-wrapper-registration w-1500-auth">
+        <form #registrationForm="ngForm" autocomplete="off">
+          <div class="grid-2">
+            <div class="form-group">
+              <mat-form-field appearance="outline">
+                <mat-label>Comment</mat-label>
+                <textarea
+                  matInput
+                  type="text"
+                  id="comment"
+                  name="comment"
+                  [(ngModel)]="text"
+                  placeholder="Unesite vas komentar ovde..."
+                ></textarea>
+              </mat-form-field>
+            </div>
+          </div>
+          <div class="grid-2">
+            <div class="form-group">
+              <mat-form-field class="w-100" appearance="outline">
+                <mat-label>Rate</mat-label>
+                <mat-select
+                  name="rating"
+                  [value]="rating"
+                  [(ngModel)]="rate"
+                  #tip="ngModel"
+                >
+                  <mat-option *ngFor="let o of rating" [value]="o">
+                    {{ o }}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
+          </div>
+          <div class="form-group w-100">
+            <mat-checkbox
+              appearance="outline"
+              [(ngModel)]="anonymous"
+              #danRanije="ngModel"
+              name="anonymous"
+            >
+            Anonymous
+            </mat-checkbox>
+            <button
+              class="primary-button"
+              (click)="comment()"
+              style="margin-left: 10px"
+            >
+            Comments
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+  

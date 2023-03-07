@@ -1,0 +1,168 @@
+<div class="center bkg-image-auth">
+    <div class="card-wrapper-auth card-wrapper-registration w-1500-auth">
+      <br />
+      <div class="image">
+        <img [src]="photo" />
+      </div>
+      <form #registrationForm="ngForm" autocomplete="off">
+        <div class="grid-2">
+          <div class="form-group">
+            <mat-form-field appearance="fill">
+              <mat-label>Trainer</mat-label>
+              <input
+                matInput
+                type="text"
+                id="trainer"
+                name="trainer"
+                [(ngModel)]="trainer"
+                readonly
+              />
+            </mat-form-field>
+          </div>
+        </div>
+  
+        <div class="form-group">
+          <mat-form-field appearance="outline">
+            <mat-label>Price</mat-label>
+            <input
+              matInput
+              type="number"
+              id="prices"
+              name="prices"
+              [(ngModel)]="prices"
+              readonly
+            />
+          </mat-form-field>
+          <mat-form-field appearance="outline">
+            <mat-label>Training duration</mat-label>
+            <input
+              matInput
+              type="number"
+              id="trainingDuration"
+              name="trainingDuration"
+              [(ngModel)]="trainingDuration"
+              readonly
+            />
+          </mat-form-field>
+        </div>
+  
+        <div class="grid-2">
+          <div class="form-group">
+            <mat-form-field appearance="outline">
+              <mat-label>Training level</mat-label>
+              <input
+                matInput
+                type="text"
+                id="levelTraining"
+                name="levelTraining"
+                [(ngModel)]="levelTraining"
+                readonly
+              />
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+              <mat-label>Training Kind</mat-label>
+              <input
+                matInput
+                type="text"
+                id="trainingKind"
+                name="trainingKind"
+                [(ngModel)]="trainingKind"
+                readonly
+              />
+            </mat-form-field>
+          </div>
+        </div>
+  
+        <div class="grid-2">
+          <div class="form-group">
+            <mat-form-field appearance="outline">
+              <mat-label>Name</mat-label>
+              <input
+                matInput
+                type="text"
+                id="name"
+                name="name"
+                [(ngModel)]="name"
+                readonly
+              />
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+              <mat-label>Description</mat-label>
+              <input
+                matInput
+                type="text"
+                id="description"
+                name="description"
+                [(ngModel)]="description"
+                readonly
+              />
+            </mat-form-field>
+          </div>
+        </div>
+  
+         <div class="center">
+          <button class="primary-button" (click)="viewComment()">
+            View comment
+          </button>
+        </div>
+      </form> 
+  
+      <!-- <div class="form-group">
+        <mat-form-field class="w-100" appearance="outline">
+          <mat-label>Odaberite broj bodova za iskoristiti</mat-label>
+          <mat-select
+            name="bod"
+            [value]="bod"
+            [(ngModel)]="bod"
+            #tip="ngModel"
+            required
+          >
+            <mat-option *ngFor="let b of bodovi" [value]="b">
+              {{ b }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div> -->
+  
+      <div class="table-wrapper box-shadow">
+        <mat-table [dataSource]="dataSource">
+          <ng-container matColumnDef="dateTime">
+            <mat-header-cell *matHeaderCellDef>Date and time</mat-header-cell>
+            <mat-cell *matCellDef="let element" data-label="dateTime">{{
+              element.dateTime
+            }}</mat-cell>
+          </ng-container>
+          <ng-container matColumnDef="workoutRoom">
+            <mat-header-cell mat-header-cell *matHeaderCellDef
+              >Workout room</mat-header-cell
+            >
+            <mat-cell mat-cell *matCellDef="let element" data-label="workoutRoom">{{
+              element.workoutRoom.name
+            }}</mat-cell>
+          </ng-container>
+  
+          <ng-container matColumnDef="reservation">
+            <mat-header-cell *matHeaderCellDef>Rezervisi</mat-header-cell>
+            <mat-cell *matCellDef="let element" data-label="Obrisi">
+              <button
+                (click)="reservation(element.id)"
+                mat-button
+                matTooltip="Dodaj termin u korpu"
+              >
+                <mat-icon>mouse</mat-icon>
+              </button>
+            </mat-cell>
+          </ng-container>
+  
+          <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+          <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+        </mat-table>
+  
+        <mat-paginator
+          [pageSizeOptions]="[10, 20, 30]"
+          showFirstLastButtons
+        ></mat-paginator>
+      </div>
+    </div>
+  </div>
+  
