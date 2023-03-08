@@ -50,7 +50,7 @@
 
   <button
   mat-button
-  *ngIf="!!roleAdmin"
+  *ngIf="!!roleAdmin|| !!roleUser"
   [routerLink]="['/workout-room/all']"
   routerLinkActive="active-route"
 >
@@ -68,7 +68,7 @@
 
 <button
   mat-button
-  *ngIf="!!roleAdmin"
+  *ngIf="!!roleAdmin || !!roleUser"
   [routerLink]="['/trainings/all']"
   routerLinkActive="active-route"
 >
@@ -84,6 +84,24 @@
   Create training
 </button>
 
+<button
+mat-button
+*ngIf="!!roleAdmin || !!roleUser"
+[routerLink]="['/trainings/shopping_cart']"
+routerLinkActive="active-route"
+>
+Shopping cart
+</button>
+
+
+<button
+mat-button
+*ngIf="!!roleAdmin || !!roleUser"
+[routerLink]="['/trainings/reservations']"
+routerLinkActive="active-route"
+>
+Rezervacije
+</button>
 
     <div class="mt-8vh">
       <router-outlet></router-outlet>

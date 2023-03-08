@@ -114,6 +114,7 @@
             (click)="view(element.id)"
             mat-button
             matTooltip="View"
+            
           >
             <mat-icon>mouse</mat-icon>
           </button>
@@ -121,7 +122,7 @@
       </ng-container>
   
       <ng-container matColumnDef="addTrainingsSchedule">
-        <mat-header-cell *matHeaderCellDef>Add training schedule</mat-header-cell>
+        <mat-header-cell *matHeaderCellDef >Add training schedule</mat-header-cell>
         <mat-cell *matCellDef="let element" data-label="addTrainingsSchedule">
           <button
             (click)="addTrainingsSchedule(element.id)"
@@ -133,8 +134,8 @@
         </mat-cell>
       </ng-container>
       
-      <ng-container matColumnDef="edit">
-        <mat-header-cell *matHeaderCellDef>Edit</mat-header-cell>
+      <ng-container matColumnDef="edit" >
+        <mat-header-cell *matHeaderCellDef >Edit</mat-header-cell>
         <mat-cell *matCellDef="let element" data-label="Edit training">
           <button
             (click)="editTrainings(element.id)"

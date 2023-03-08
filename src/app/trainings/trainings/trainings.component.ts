@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { Apollo } from "apollo-angular";
 import { ToastrService } from "ngx-toastr";
 import { TRAININGS } from 'src/app/graphql.queries';
+import { LocalStorageService } from 'src/app/shared/service/local-storage-service';
 
 @Component({
   selector: 'app-trainings',
@@ -14,6 +15,7 @@ import { TRAININGS } from 'src/app/graphql.queries';
 export class TrainingsComponent implements OnInit {
   trainings: any = null;
   sort: string = "";
+  role: String;
   priceFrom: number = 0;
   priceTo: number = 0;
   filter: string = "";
@@ -31,21 +33,24 @@ export class TrainingsComponent implements OnInit {
     "description",
     "trainingDuration",
     "view",
-    "edit",
     "addTrainingsSchedule",
   ];
 
   dataSource = new MatTableDataSource<any>(this.trainings);
 
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
-  
+
   constructor(
     private router: Router,
     private toastr: ToastrService,
-    private apollo: Apollo
+    private apollo: Apollo,
   ) { }
 
   ngOnInit(): void {
+    this.role = JSON.parse(`${localStorage.getItem("role")}`)[0];
+    if(this.role === 'ADMIN'){
+      this.displayedColumns.push('edit');
+    }
     this.apollo
       .watchQuery<any>({
         query: TRAININGS,
@@ -68,6 +73,7 @@ export class TrainingsComponent implements OnInit {
           this.toastr.error("there was an error sending the query", error);
         }
       );
+
   }
 
   filtriraj() {

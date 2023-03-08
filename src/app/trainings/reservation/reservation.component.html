@@ -1,0 +1,33 @@
+<div class="table-wrapper box-shadow">
+    <mat-table [dataSource]="dataSource">
+      <ng-container matColumnDef="dateTime">
+        <mat-header-cell *matHeaderCellDef>Date and Time</mat-header-cell>
+        <mat-cell *matCellDef="let element" data-label="Date and time">{{
+          element.trainingSchedule.dateTime
+        }}</mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="workoutRoom">
+        <mat-header-cell mat-header-cell *matHeaderCellDef>Workout room</mat-header-cell>
+        <mat-cell mat-cell *matCellDef="let element" data-label="WorkoutRoom">{{
+          element.trainingSchedule.workoutRoom.name
+        }}</mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="training">
+        <mat-header-cell mat-header-cell *matHeaderCellDef
+          >Training</mat-header-cell
+        >
+        <mat-cell mat-cell *matCellDef="let element" data-label="Training">{{
+          element.trainingSchedule.training.name
+        }}</mat-cell>
+      </ng-container>
+  
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+    </mat-table>
+  
+    <mat-paginator
+      [pageSizeOptions]="[10, 20, 30]"
+      showFirstLastButtons
+    ></mat-paginator>
+  </div>
+  

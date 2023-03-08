@@ -84,9 +84,9 @@ const CREATE_TRAINING_SCHEDULE = gql`
   }
 `;
 
-const KORPA = gql`
-  mutation korpa($idTermina: Int!, $brojBodova: Int!) {
-    korpa(idTermina: $idTermina, brojBodova: $brojBodova)
+const SHOPPING_CART = gql`
+  mutation shoppingCart($idTrainingSchedule: Int!, $numberPoint: Int!) {
+    shoppingCart(idTrainingSchedule: $idTrainingSchedule, numberPoint: $numberPoint)
   }
 `;
 
@@ -96,9 +96,9 @@ const OBRADI_ZAHTEV_ZA_KARTICU = gql`
   }
 `;
 
-const OBRADI_KORPU = gql`
-  mutation obradiKorpu($prihvaceno: Boolean!) {
-    obradiKorpu(prihvaceno: $prihvaceno)
+const PROCESS_SHOPPING_CART = gql`
+  mutation processShoppingCart($accepted: Boolean!) {
+    processShoppingCart(accepted: $accepted)
   }
 `;
 
@@ -283,18 +283,18 @@ const TRAINING = gql`
   }
 `;
 
-const PREGLED_REZERVACIJA = gql`
-  query pregledRezervacija($korpa: Boolean!) {
-    pregledRezervacija(korpa: $korpa) {
+const VIEW_RESERVATION = gql`
+  query viewReservation($shoppingCart: Boolean!) {
+    viewReservation(shoppingCart: $shoppingCart) {
       id
-      potvrda
-      terminOdrzavanjaTreninga {
-        vreme
-        sala {
-          oznaka
+      confirmation
+      trainingSchedule {
+        dateTime
+        workoutRoom {
+          name
         }
-        trening {
-          naziv
+        training {
+          name
         }
       }
     }
@@ -409,7 +409,7 @@ export {
   TRAININGS,
   STATISTIKA,
   TRAINING,
-  PREGLED_REZERVACIJA,
+  VIEW_RESERVATION,
   CREATE_COMMENT,
   PROCCES_COMMENT,
   CREATE_WORKOUTROOM,
@@ -418,8 +418,8 @@ export {
   CREATE_TRAINING,
   EDIT_TRAINING,
   CREATE_TRAINING_SCHEDULE,
-  KORPA,
-  OBRADI_KORPU,
+  SHOPPING_CART,
+  PROCESS_SHOPPING_CART,
   PROFIL,
   OBRADI_ZAHTEV_ZA_KARTICU,
 };

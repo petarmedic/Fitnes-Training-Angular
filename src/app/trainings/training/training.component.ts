@@ -4,7 +4,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Apollo } from 'apollo-angular';
 import { ToastrService } from 'ngx-toastr';
-import { TRAINING } from 'src/app/graphql.queries';
+import { SHOPPING_CART, TRAINING } from 'src/app/graphql.queries';
 
 @Component({
   selector: 'app-training',
@@ -74,6 +74,32 @@ export class TrainingComponent implements OnInit {
 
   viewComment() {
     this.router.navigate(["comments/comments-for-training/" + this.idTraining]);
+  }
+
+  reservation(id) {
+    this.apollo
+      .mutate({
+        mutation: SHOPPING_CART,
+        variables: {
+          idTrainingSchedule: id,
+          numberPoint: this.bod,
+        },
+      })
+      .subscribe(
+        (data) => {
+          if (data["data"].korpa) {
+            this.toastr.success("Added to shopping cart!");
+          } else {
+            this.toastr.error("Error added to shopping cart!");
+          }
+
+          localStorage.removeItem("shoppingcartReload");
+          localStorage.removeItem("reservationReload");
+        },
+        (error) => {
+          this.toastr.error("Greska prilikom rezervisanja!");
+        }
+      );
   }
 
 }

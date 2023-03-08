@@ -9,6 +9,8 @@ import { TrainingComponent } from "./training/training.component";
 import { AddTrainingsScheduleComponent } from './add-trainings-schedule/add-trainings-schedule.component';
 import { EditTrainingComponent } from './edit-training/edit-training.component';
 import { CreateTrainingComponent } from "./create-training/create-training.component";
+import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component';
+import { ReservationComponent } from './reservation/reservation.component';
 
 
 @NgModule({
@@ -18,6 +20,8 @@ import { CreateTrainingComponent } from "./create-training/create-training.compo
     TrainingComponent,
     AddTrainingsScheduleComponent,
     EditTrainingComponent,
+    ShoppingCartComponent,
+    ReservationComponent,
   ],
   imports: [
     CommonModule,
