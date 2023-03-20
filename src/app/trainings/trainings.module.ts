@@ -11,6 +11,7 @@ import { EditTrainingComponent } from './edit-training/edit-training.component';
 import { CreateTrainingComponent } from "./create-training/create-training.component";
 import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component';
 import { ReservationComponent } from './reservation/reservation.component';
+import { StatisticsComponent } from './statistics/statistics.component';
 
 
 @NgModule({
@@ -22,6 +23,7 @@ import { ReservationComponent } from './reservation/reservation.component';
     EditTrainingComponent,
     ShoppingCartComponent,
     ReservationComponent,
+    StatisticsComponent,
   ],
   imports: [
     CommonModule,

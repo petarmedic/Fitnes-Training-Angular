@@ -1,7 +1,7 @@
 <div class="table-wrapper box-shadow">
     <mat-table [dataSource]="dataSource">
       <ng-container matColumnDef="rate">
-        <mat-header-cell *matHeaderCellDef>OceRatena</mat-header-cell>
+        <mat-header-cell *matHeaderCellDef>Rate</mat-header-cell>
         <mat-cell *matCellDef="let element" data-label="Rate">{{
           element.rate
         }}</mat-cell>
@@ -13,7 +13,7 @@
         }}</mat-cell>
       </ng-container>
       <ng-container matColumnDef="datePost">
-        <mat-header-cell mat-header-cell *matHeaderCellDef>Date Post</mat-header-cell>
+        <mat-header-cell mat-header-cell *matHeaderCellDef>Post Date</mat-header-cell>
         <mat-cell mat-cell *matCellDef="let element" data-label="Date post">{{
           element.datePost
         }}</mat-cell>
@@ -88,7 +88,7 @@
               (click)="comment()"
               style="margin-left: 10px"
             >
-            Comments
+            Save
             </button>
           </div>
         </form>

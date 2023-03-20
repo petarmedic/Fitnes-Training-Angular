@@ -72,7 +72,7 @@
   
     <mat-table [dataSource]="dataSource">
       <ng-container matColumnDef="prices">
-        <mat-header-cell *matHeaderCellDef>Cena</mat-header-cell>
+        <mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by number">Cena</mat-header-cell>
         <mat-cell *matCellDef="let element" data-label="prices">{{
           element.prices
         }}</mat-cell>

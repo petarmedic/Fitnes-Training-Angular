@@ -7,6 +7,7 @@ import { CreateTrainingComponent } from "./create-training/create-training.compo
 import { EditTrainingComponent } from "./edit-training/edit-training.component";
 import { ReservationComponent } from "./reservation/reservation.component";
 import { ShoppingCartComponent } from "./shopping-cart/shopping-cart.component";
+import { StatisticsComponent } from "./statistics/statistics.component";
 import { TrainingComponent } from "./training/training.component";
 import { TrainingsComponent } from "./trainings/trainings.component";
 
@@ -34,6 +35,11 @@ const routes: Routes = [
   {
     path: "edit/:id",
     component: EditTrainingComponent,
+    canActivate: [Admin],
+  },
+  {
+    path: "statistics",
+    component: StatisticsComponent,
     canActivate: [Admin],
   },
   {

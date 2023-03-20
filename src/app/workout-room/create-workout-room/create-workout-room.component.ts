@@ -33,7 +33,7 @@ export class CreateWorkoutRoomComponent implements OnInit {
       })
       .subscribe(
         (data) => {
-          this.toastr.success("Create!");
+          this.toastr.success("Woorkout Room succesfully created!");
           this.router.navigate(["workout-room/all"]);
         },
         (error) => {

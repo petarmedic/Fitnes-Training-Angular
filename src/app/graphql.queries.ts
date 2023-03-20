@@ -237,14 +237,14 @@ const TRAININGS = gql`
   }
 `;
 
-const STATISTIKA = gql`
-  query statistika($datumOd: String, $datumDo: String) {
-    statistika(datumOd: $datumOd, datumDo: $datumDo) {
-      idTreninga
-      brojZakazivanja
-      zarada
-      trener
-      nazivTreninga
+const STATISTICS = gql`
+  query statistics($dateFrom: String, $dateTo: String) {
+    statistics(dateFrom: $dateFrom, dateTo: $dateTo) {
+      idTraining
+      numberReservation
+      earnings
+      trainer
+      nameTraining
     }
   }
 `;
@@ -407,7 +407,7 @@ export {
   COMMENT_FOR_TRAININGS,
   COMMENT_FOR_APPROVAL,
   TRAININGS,
-  STATISTIKA,
+  STATISTICS,
   TRAINING,
   VIEW_RESERVATION,
   CREATE_COMMENT,

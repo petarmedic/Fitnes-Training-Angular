@@ -13,6 +13,8 @@ import { GraphQLModule } from "./graphql.module";
 import { WorkoutRoomModule } from "./workout-room/workout-room.module";
 import { TrainingsModule } from "./trainings/trainings.module";
 import { CommentsModule } from "./comments/comments.module";
+import { MatTableModule } from "@angular/material/table";
+import { MatSortModule } from "@angular/material/sort";
 
 
 @NgModule({
@@ -20,6 +22,8 @@ import { CommentsModule } from "./comments/comments.module";
   imports: [
     BrowserModule,
     AppRoutingModule,
+    MatTableModule,
+    MatSortModule,
     ToastrModule.forRoot({
       positionClass: "toast-bottom-center",
     }),

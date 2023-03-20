@@ -57,14 +57,14 @@ export class WorkoutRoomsComponent implements OnInit {
       })
       .subscribe(
         (data) => {
-          this.toastr.success("Delete!");
+          this.toastr.success("Deleted!");
           this.workoutRooms = this.workoutRooms.filter((k) => k.id !== id);
           this.dataSource = new MatTableDataSource<any>(this.workoutRooms);
           this.dataSource.paginator = this.paginator;
         },
         (error) => {
           this.toastr.error(
-            "It is not possible to delete the hall to which trainings or appointments are connected!"
+            "It is not possible to delete the woorkout room to which trainings or appointments are connected!"
           );
         }
       );

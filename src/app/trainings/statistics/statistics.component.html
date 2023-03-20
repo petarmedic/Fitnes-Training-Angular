@@ -1,0 +1,81 @@
+<div class="table-wrapper box-shadow">
+    <div class="center bkg-image-auth">
+      <div class="card-wrapper-auth card-wrapper-registration w-1500-auth">
+        <div class="desc-medium">
+            Fill out the form to filter <b>statistics</b>
+        </div>
+        <br />
+        <form #registrationForm="ngForm" autocomplete="off">
+          <div class="grid-2">
+            <div class="form-group">
+              <mat-form-field appearance="outline">
+                <mat-label>Date from</mat-label>
+                <input
+                  matInput
+                  type="datetime-local"
+                  id="dateFrom"
+                  name="dateFrom"
+                  [(ngModel)]="dateFrom"
+                />
+              </mat-form-field>
+  
+              <mat-form-field appearance="outline">
+                <mat-label>Date to</mat-label>
+                <input
+                  matInput
+                  type="datetime-local"
+                  id="dateTo"
+                  name="dateTo"
+                  [(ngModel)]="dateTo"
+                />
+              </mat-form-field>
+            </div>
+          </div>
+  
+          <div class="center">
+            <button class="primary-button" (click)="filter()">Filter</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  
+    <mat-table [dataSource]="dataSource" matSort matSortDisableClear>
+      <ng-container matColumnDef="nameTraining">
+        <mat-header-cell *matHeaderCellDef mat-sort-header [appSort]="dataSource">Training</mat-header-cell>
+        <mat-cell *matCellDef="let element" data-label="Name Training">{{
+          element.nameTraining
+        }}</mat-cell>
+      </ng-container>
+  
+      <ng-container matColumnDef="trainer">
+        <mat-header-cell *matHeaderCellDef mat-sort-header [appSort]="dataSource">Trainer</mat-header-cell>
+        <mat-cell *matCellDef="let element" data-label="Trainer">{{
+          element.trainer
+        }}</mat-cell>
+      </ng-container>
+  
+      <ng-container matColumnDef="numberReservation">
+        <mat-header-cell *matHeaderCellDef>Number of Bookings</mat-header-cell>
+        <mat-cell *matCellDef="let element" data-label="Number reservation">{{
+          element.numberReservation
+        }}</mat-cell>
+      </ng-container>
+  
+      <ng-container matColumnDef="earnings">
+        <mat-header-cell *matHeaderCellDef>Earnings</mat-header-cell>
+        <mat-cell *matCellDef="let element" data-label="Earnings">{{
+          element.earnings
+        }}</mat-cell>
+      </ng-container>
+  
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+    </mat-table>
+  
+    <!-- <mat-paginator
+      [pageSizeOptions]="[10, 20, 30]"
+      showFirstLastButtons
+    ></mat-paginator> -->
+  </div>
+  
+

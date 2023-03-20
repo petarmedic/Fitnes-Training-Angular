@@ -39,6 +39,15 @@
     Comments
   </button>
 
+  <button
+  mat-button
+  *ngIf="!!roleAdmin"
+  [routerLink]="['/trainings/statistics']"
+  routerLinkActive="active-route"
+>
+  Statistics
+</button>
+
     <button
     mat-button
     *ngIf="!!roleAdmin"
@@ -50,7 +59,7 @@
 
   <button
   mat-button
-  *ngIf="!!roleAdmin|| !!roleUser"
+  *ngIf="!!roleAdmin"
   [routerLink]="['/workout-room/all']"
   routerLinkActive="active-route"
 >
@@ -72,7 +81,7 @@
   [routerLink]="['/trainings/all']"
   routerLinkActive="active-route"
 >
-  All trainings
+  All Trainings
 </button>
 
 <button
@@ -81,7 +90,7 @@
   [routerLink]="['/trainings/create']"
   routerLinkActive="active-route"
 >
-  Create training
+  Create Training
 </button>
 
 <button
@@ -90,7 +99,7 @@ mat-button
 [routerLink]="['/trainings/shopping_cart']"
 routerLinkActive="active-route"
 >
-Shopping cart
+Shopping Cart
 </button>
 
 
@@ -100,7 +109,7 @@ mat-button
 [routerLink]="['/trainings/reservations']"
 routerLinkActive="active-route"
 >
-Rezervacije
+Bookings
 </button>
 
     <div class="mt-8vh">

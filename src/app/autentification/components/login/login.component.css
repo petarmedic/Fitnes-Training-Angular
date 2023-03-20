@@ -2,14 +2,22 @@
   display: inline-flex;
 }
 
+img{
+  width: 250px;
+  background-position-y: right;
+
+}
+
+
 .bkg-image-auth {
   margin: 0;
-  width: 100%;
+  width: 50%;
+  display: block;
   height: 76.5vh;
   padding-top: 15vh;
   background-repeat: no-repeat;
   background-size: cover;
-  background-position-y: center;
+  background-position-y: right;
 }
 
 .center {
@@ -23,3 +31,5 @@
   background-color: transparent;
   text-decoration: none;
 }
+
+
