@@ -1,5 +1,5 @@
 import { Component, OnInit } from "@angular/core";
-import { Router } from "@angular/router";
+import { NavigationEnd, Router } from "@angular/router";
 import { ToastrService } from "ngx-toastr";
 import { LocalStorageService } from "src/app/shared/service/local-storage-service";
 import { LOGIN } from "src/app/graphql.queries";
@@ -14,15 +14,25 @@ import { error } from "console";
 export class LoginComponent implements OnInit {
   usernameInput: string;
   passwordInput: string;
-
+  role: String;
+  roleUser: Boolean = false;
+  roleAdmin: Boolean = false;
   constructor(
     private apollo: Apollo,
     private router: Router,
     private toastr: ToastrService,
     private storageService: LocalStorageService
-  ) {}
+  ) 
+  { }
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.role = JSON.parse(`${localStorage.getItem("role")}`)[0];
+    if(this.role ==="USER") {
+      this.roleUser = true;
+    } else if (this.role=== "ADMIN") {
+      this.roleAdmin = true;
+    }
+  }
 
   onSubmit() {
     localStorage.clear();

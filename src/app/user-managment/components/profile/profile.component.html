@@ -1,7 +1,7 @@
 <div class="center bkg-image-auth">
   <div class="card-wrapper-auth w-500">
 
-    <h4 class="h4-bold">Profil korisnika</h4>
+    <h4 class="h4-bold">User profile</h4>
     <p class="orange-color desc-bold">{{ user.name + " " + user.lastName }}</p>
     <br />
     
@@ -10,7 +10,7 @@
       <mat-form-field  class="w-100">
         <input
           matInput
-          placeholder="Ime"
+          placeholder="Name"
           required
           type="text"
           [(ngModel)]="user.name"
@@ -23,7 +23,7 @@
         <input
           matInput
           required
-          placeholder="Prezime"
+          placeholder="Last Name"
           type="text"
           [(ngModel)]="user.lastName"
           name="lastName"
@@ -35,7 +35,7 @@
         <input
           matInput
           required
-          placeholder="Adresa"
+          placeholder="Address"
           type="text"
           [(ngModel)]="user.adress"
           name="adresa"
@@ -59,7 +59,7 @@
         <input
           matInput
           required
-          placeholder="Korisnicko ime"
+          placeholder="Username"
           type="text"
           [(ngModel)]="user.username"
           name="korisnickoIme"
@@ -71,7 +71,7 @@
         <input
           matInput
           required
-          placeholder="Broj telefona"
+          placeholder="Phone Number"
           type="text"
           [(ngModel)]="user.phoneNumber"
           name="brojTelefona"
@@ -80,12 +80,26 @@
         />
       </mat-form-field>
 
+      <mat-form-field  class="w-100">
+        <input
+          matInput
+          required
+          placeholder="Point Loyalty Card"
+          type="text"
+        
+          [(ngModel)]="loyaltyCardPoint"
+          name="loyaltyCardPoint"
+          pattern="([+]?\d{1,2}[.-\s]?)?(\d{3}[.-]?){2}\d{3}"
+          readonly
+        />
+      </mat-form-field>
+
       <div class="grid-2">
         <button mat-button (click)="goBack()" class="primary-link">
-          <mat-icon> chevron_left </mat-icon>Nazad
+          <mat-icon> chevron_left </mat-icon>Back
         </button>
-        <button mat-button (click)="zahtevajKarticu()" class="primary-link">
-          <mat-icon> save </mat-icon>Get Loyalty Card (Only for USERS)
+        <button mat-button (click)="requestCard()" *ngIf="!!roleUser" class="primary-link">
+          <mat-icon> save </mat-icon>Get Loyalty Card
         </button>
       </div>
     </form>

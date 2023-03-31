@@ -15,3 +15,26 @@
     margin: 0 auto;
     text-align: center;
   }
+  .filte {
+    padding: 150px;
+  }
+
+  .mat-form-field {
+    margin-bottom: 16px;
+  }
+
+  .form-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .mat-form-field {
+    margin: 0 10px;
+  }
+
+  .filter {
+    display: flex;
+    justify-content: flex-end;
+    margin-right: 20px;
+  }

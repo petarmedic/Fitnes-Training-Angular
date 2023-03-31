@@ -12,7 +12,7 @@ import { NavigationComponent } from './components/navigation/navigation.componen
 @NgModule({
   declarations: [
     PageNotFoundComponent,
-    NavigationComponent
+    NavigationComponent,
   ],
   imports: [
     CommonModule, AngularMaterialModule, FormsModule, RouterModule, ReactiveFormsModule, CoreModule

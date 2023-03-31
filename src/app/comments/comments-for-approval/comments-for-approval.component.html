@@ -13,7 +13,7 @@
         }}</mat-cell>
       </ng-container>
       <ng-container matColumnDef="datePost">
-        <mat-header-cell mat-header-cell *matHeaderCellDef>Date post</mat-header-cell>
+        <mat-header-cell mat-header-cell *matHeaderCellDef>Date Post</mat-header-cell>
         <mat-cell mat-cell *matCellDef="let element" data-label="Date Post">{{
           element.datePost
         }}</mat-cell>
@@ -23,15 +23,15 @@
         <mat-header-cell mat-header-cell *matHeaderCellDef
           >User</mat-header-cell
         >
-        <mat-cell mat-cell *matCellDef="let element" data-label="User">{{
-          element.anoniman
-            ? "ANONIMNO"
-            : element.user.name + " " + element.user.lastName
+        <mat-cell mat-cell *matCellDef="let element" data-label="User">{{ 
+          element.anonymous ? 'Anonymous' : element.user.name + ' ' + element.user.lastName 
         }}</mat-cell>
       </ng-container>
-      <ng-container matColumnDef="accept">
-        <mat-header-cell *matHeaderCellDef>Accept</mat-header-cell>
-        <mat-cell *matCellDef="let element" data-label="Accept">
+
+
+      <ng-container matColumnDef="actions">
+        <mat-header-cell *matHeaderCellDef >Action</mat-header-cell>
+        <mat-cell *matCellDef="let element" data-label="Action training">
           <button
             (click)="process(element.id, true)"
             mat-button
@@ -39,11 +39,6 @@
           >
             <mat-icon>check</mat-icon>
           </button>
-        </mat-cell>
-      </ng-container>
-      <ng-container matColumnDef="reject">
-        <mat-header-cell *matHeaderCellDef>Reject</mat-header-cell>
-        <mat-cell *matCellDef="let element" data-label="Reject">
           <button
             (click)="process(element.id, false)"
             mat-button
@@ -53,6 +48,7 @@
           </button>
         </mat-cell>
       </ng-container>
+
       <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
       <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
     </mat-table>

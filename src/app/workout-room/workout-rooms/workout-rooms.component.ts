@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
-import { MatTableDataSource } from '@angular/material/table';
+import { MatTable, MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
 import { Apollo } from 'apollo-angular';
 import { ToastrService } from 'ngx-toastr';
@@ -21,11 +22,13 @@ export class WorkoutRoomsComponent implements OnInit {
   dataSource = new MatTableDataSource<any>(this.workoutRooms);
 
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
+  @ViewChild('table', { static: true }) table: MatTable<any>;
   
   constructor(
     private router: Router,
     private toastr: ToastrService,
-    private apollo: Apollo
+    private apollo: Apollo,
+    private dialog: MatDialog
   ) { }
 
   ngOnInit(): void {
@@ -39,6 +42,8 @@ export class WorkoutRoomsComponent implements OnInit {
           const res = response.data.workoutRooms;
           this.dataSource = new MatTableDataSource<any>(res);
           this.dataSource.paginator = this.paginator;
+          this.dataSource.data = this.workoutRooms; // Refresh the MatTableDataSource
+
         },
         (error) => {
           this.toastr.error("there was an error sending the query", error);
@@ -47,6 +52,8 @@ export class WorkoutRoomsComponent implements OnInit {
   }
 
   delete(id) {
+
+
     console.log(id);
     this.apollo
       .mutate({
@@ -59,8 +66,13 @@ export class WorkoutRoomsComponent implements OnInit {
         (data) => {
           this.toastr.success("Deleted!");
           this.workoutRooms = this.workoutRooms.filter((k) => k.id !== id);
+          this.dataSource.data = this.workoutRooms;
           this.dataSource = new MatTableDataSource<any>(this.workoutRooms);
           this.dataSource.paginator = this.paginator;
+          this.dataSource._updateChangeSubscription();
+          setTimeout(() => {
+            location.reload();
+          }, 2000);
         },
         (error) => {
           this.toastr.error(
@@ -68,6 +80,16 @@ export class WorkoutRoomsComponent implements OnInit {
           );
         }
       );
+  }
+
+  confirmDelete(id: number) {
+    if (confirm('Are you sure you want to delete this?')) {
+      // ukoliko je korisnik potvrdio brisanje
+      this.delete(id);
+    } else {
+      // ukoliko korisnik nije potvrdio brisanje
+      return;
+    }
   }
 
 

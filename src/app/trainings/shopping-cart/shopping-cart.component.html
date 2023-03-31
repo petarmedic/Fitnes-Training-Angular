@@ -9,13 +9,13 @@
     </div>
     <mat-table [dataSource]="dataSource">
       <ng-container matColumnDef="dateTime">
-        <mat-header-cell *matHeaderCellDef>Date and time</mat-header-cell>
+        <mat-header-cell *matHeaderCellDef>Date and Time</mat-header-cell>
         <mat-cell *matCellDef="let element" data-label="DateTime">{{
           element.trainingSchedule.dateTime
         }}</mat-cell>
       </ng-container>
       <ng-container matColumnDef="workoutRoom">
-        <mat-header-cell mat-header-cell *matHeaderCellDef>Sala</mat-header-cell>
+        <mat-header-cell mat-header-cell *matHeaderCellDef>Workout Room</mat-header-cell>
         <mat-cell mat-cell *matCellDef="let element" data-label="Workout Room">{{
           element.trainingSchedule.workoutRoom.name
         }}</mat-cell>

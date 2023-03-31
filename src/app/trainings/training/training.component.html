@@ -107,9 +107,9 @@
         </div>
       </form> 
   
-      <!-- <div class="form-group">
+      <div class="form-group">
         <mat-form-field class="w-100" appearance="outline">
-          <mat-label>Odaberite broj bodova za iskoristiti</mat-label>
+          <mat-label>Choose the number of points to redeem</mat-label>
           <mat-select
             name="bod"
             [value]="bod"
@@ -122,7 +122,7 @@
             </mat-option>
           </mat-select>
         </mat-form-field>
-      </div> -->
+      </div>
   
       <div class="table-wrapper box-shadow">
         <mat-table [dataSource]="dataSource">
@@ -142,12 +142,12 @@
           </ng-container>
   
           <ng-container matColumnDef="reservation">
-            <mat-header-cell *matHeaderCellDef>Rezervisi</mat-header-cell>
+            <mat-header-cell *matHeaderCellDef>Reservation</mat-header-cell>
             <mat-cell *matCellDef="let element" data-label="Obrisi">
               <button
                 (click)="reservation(element.id)"
                 mat-button
-                matTooltip="Dodaj termin u korpu"
+                matTooltip="Add training schedule in shopping cart"
               >
                 <mat-icon>mouse</mat-icon>
               </button>

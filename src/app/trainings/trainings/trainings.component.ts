@@ -16,8 +16,10 @@ export class TrainingsComponent implements OnInit {
   trainings: any = null;
   sort: string = "";
   role: String;
-  priceFrom: number = 0;
-  priceTo: number = 0;
+  roleUser: Boolean = false;
+  roleAdmin: Boolean = false;
+  priceFrom: number = null;
+  priceTo: number = null;
   filter: string = "";
   sortovi: any = [
     { naziv: "Name", sort: "name" },
@@ -32,8 +34,7 @@ export class TrainingsComponent implements OnInit {
     "levelTraining",
     "description",
     "trainingDuration",
-    "view",
-    "addTrainingsSchedule",
+    "actions",
   ];
 
   dataSource = new MatTableDataSource<any>(this.trainings);
@@ -48,16 +49,22 @@ export class TrainingsComponent implements OnInit {
 
   ngOnInit(): void {
     this.role = JSON.parse(`${localStorage.getItem("role")}`)[0];
-    if(this.role === 'ADMIN'){
-      this.displayedColumns.push('edit');
+    if(this.role ==="USER") {
+      this.roleUser = true;
+    } else if (this.role=== "ADMIN") {
+      this.roleAdmin = true;
     }
+
+    // if(this.role === 'ADMIN'){
+    //   this.displayedColumns.push('edit');
+    // }
     this.apollo
       .watchQuery<any>({
         query: TRAININGS,
         variables: {
           filter: this.filter,
-          priceFrom: this.priceFrom,
-          priceTo: this.priceTo,
+          priceFrom: this.priceFrom !== null ? this.priceFrom : 0,
+          priceTo: this.priceTo !== null ? this.priceTo : 0,
           sort: this.sort,
         },
       })
@@ -81,10 +88,8 @@ export class TrainingsComponent implements OnInit {
       .watchQuery<any>({
         query: TRAININGS,
         variables: {
-          filter: this.filter,
-          priceFrom: this.priceFrom,
-          priceTo: this.priceTo,
-          sort: this.sort,
+          priceFrom: this.priceFrom !== null ? this.priceFrom : 0,
+          priceTo: this.priceTo !== null ? this.priceTo : 0,
         },
       })
       .valueChanges.subscribe(
@@ -111,5 +116,9 @@ export class TrainingsComponent implements OnInit {
 
   addTrainingsSchedule(id) {
     this.router.navigate(["trainings/add-trainings-schedule/" + id]);
+  }
+
+  applyFilter(filterValue: string){
+    this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 }

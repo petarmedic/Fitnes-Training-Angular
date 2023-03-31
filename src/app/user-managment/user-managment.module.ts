@@ -5,12 +5,12 @@ import { UserManagmentRoutingModule } from "./user-managment-routing.module";
 import { AngularMaterialModule } from "../angular-material/angular-material.module";
 import { FormsModule } from "@angular/forms";
 import { ProfileComponent } from "./components/profile/profile.component";
-import { ClanskeKarticeZaOdobrenjeComponent } from './components/clanske-kartice-za-odobrenje/clanske-kartice-za-odobrenje.component';
 import { AllUsersComponent } from './components/all-users/all-users.component';
 import { EditUserComponent } from './components/edit-user/edit-user.component';
+import { LoyaltyCardForApprovalComponent } from './components/loyalty-card-for-approval/loyalty-card-for-approval.component';
 
 @NgModule({
-  declarations: [ProfileComponent, ClanskeKarticeZaOdobrenjeComponent, AllUsersComponent, EditUserComponent],
+  declarations: [ProfileComponent, AllUsersComponent, EditUserComponent, LoyaltyCardForApprovalComponent],
   imports: [
     CommonModule,
     UserManagmentRoutingModule,

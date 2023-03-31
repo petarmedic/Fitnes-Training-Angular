@@ -1,0 +1,51 @@
+<div class="table-wrapper box-shadow">
+    <mat-table [dataSource]="dataSource">
+      <ng-container matColumnDef="name">
+        <mat-header-cell *matHeaderCellDef>Name</mat-header-cell>
+        <mat-cell *matCellDef="let element" data-label="Name">{{
+          element.name
+        }}</mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="lastName">
+        <mat-header-cell mat-header-cell *matHeaderCellDef
+          >Last Name</mat-header-cell
+        >
+        <mat-cell mat-cell *matCellDef="let element" data-label="lastName">{{
+          element.lastName
+        }}</mat-cell>
+      </ng-container>
+  
+      <ng-container matColumnDef="acept">
+        <mat-header-cell *matHeaderCellDef>Acept</mat-header-cell>
+        <mat-cell *matCellDef="let element" data-label="acept">
+          <button
+            (click)="process(element.id, true)"
+            mat-button
+            matTooltip="Acept card"
+          >
+            <mat-icon>check</mat-icon>
+          </button>
+        </mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="reject">
+        <mat-header-cell *matHeaderCellDef>reject</mat-header-cell>
+        <mat-cell *matCellDef="let element" data-label="Reject">
+          <button
+            (click)="process(element.id, false)"
+            mat-button
+            matTooltip="Reject card"
+          >
+            <mat-icon>delete</mat-icon>
+          </button>
+        </mat-cell>
+      </ng-container>
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+    </mat-table>
+  
+    <mat-paginator
+      [pageSizeOptions]="[10, 20, 30]"
+      showFirstLastButtons
+    ></mat-paginator>
+  </div>
+  

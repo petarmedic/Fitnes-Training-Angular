@@ -2,11 +2,36 @@
   display: inline-flex;
 }
 
-img{
-  width: 250px;
-  background-position-y: right;
-
+.grid-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 10px;
+  height: 100vh;
+  width: 100vw;
 }
+
+.image {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.image img {
+  max-width: 50%;
+  max-height: 70%;
+}
+
+.ngForm {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  max-height: 100%;
+}
+
+.form ngForm {
+  /* CSS stilovi za vašu formu */
+}
+
 
 
 .bkg-image-auth {

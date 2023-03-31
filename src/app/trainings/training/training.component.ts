@@ -87,10 +87,10 @@ export class TrainingComponent implements OnInit {
       })
       .subscribe(
         (data) => {
-          if (data["data"].korpa) {
+          if (data["data"].shoppingCart) {
             this.toastr.success("Added to shopping cart!");
           } else {
-            this.toastr.error("Error added to shopping cart!");
+            this.toastr.error("Training has already been added to shopping cart!");
           }
 
           localStorage.removeItem("shoppingcartReload");

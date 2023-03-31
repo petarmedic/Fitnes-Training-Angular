@@ -1,5 +1,5 @@
 <div class="table-wrapper box-shadow">
-    <div class="center bkg-image-auth">
+    <!-- <div class="center bkg-image-auth">
       <div class="card-wrapper-auth card-wrapper-registration w-1500-auth">
         <div class="desc-medium">
           Popunite formu da bi ste filtrirali <b>treninge.</b>
@@ -32,20 +32,6 @@
             </mat-form-field>
           </div>
   
-          <div class="grid-2">
-            <div class="form-group">
-              <mat-form-field appearance="outline">
-                <mat-label>Filter</mat-label>
-                <input
-                  matInput
-                  type="text"
-                  id="filter"
-                  name="filter"
-                  [(ngModel)]="filter"
-                />
-              </mat-form-field>
-            </div>
-          </div>
   
           <div class="form-group">
             <mat-form-field class="w-100" appearance="outline">
@@ -68,11 +54,55 @@
           </div>
         </form>
       </div>
+    </div> -->
+    <br>
+  <form #registrationForm="ngForm" autocomplete="off">
+    <div class="form-container">
+      
+    
+
+      <mat-form-field appearance="outline">
+        <mat-label>Price from</mat-label>
+        <input
+          matInput
+          type="number"
+          id="priceFrom"
+          name="priceFrom"
+          [(ngModel)]="priceFrom"
+        />
+        
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+
+          <mat-label>Price to</mat-label>
+          <input
+            matInput
+            type="number"
+            id="priceTo"
+            name="priceTo"
+            [(ngModel)]="priceTo"
+          />
+
+      </mat-form-field>
     </div>
+      <div class="center">
+        <button class="primary-button" (click)="filtriraj()">Filter</button>
+      </div>
+  </form>
+    
+
+
+    <div>
+    <mat-form-field class="filter">
+      <input  matInput (keyup)="applyFilter($event.target.value)" placeholder="Search">
+    </mat-form-field>
+    </div>
+
   
     <mat-table [dataSource]="dataSource">
       <ng-container matColumnDef="prices">
-        <mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by number">Cena</mat-header-cell>
+        <mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by number">Price</mat-header-cell>
         <mat-cell *matCellDef="let element" data-label="prices">{{
           element.prices
         }}</mat-cell>
@@ -85,7 +115,7 @@
       </ng-container>
       <ng-container matColumnDef="levelTraining">
         <mat-header-cell mat-header-cell *matHeaderCellDef
-          >Training level</mat-header-cell
+          >Training Level</mat-header-cell
         >
         <mat-cell mat-cell *matCellDef="let element" data-label="levelTraining">{{
           element.levelTraining
@@ -100,7 +130,7 @@
   
       <ng-container matColumnDef="trainingDuration">
         <mat-header-cell mat-header-cell *matHeaderCellDef
-          >Training duration</mat-header-cell
+          >Training Duration</mat-header-cell
         >
         <mat-cell mat-cell *matCellDef="let element" data-label="Training duration">{{
           element.trainingDuration
@@ -138,6 +168,7 @@
         <mat-header-cell *matHeaderCellDef >Edit</mat-header-cell>
         <mat-cell *matCellDef="let element" data-label="Edit training">
           <button
+           
             (click)="editTrainings(element.id)"
             mat-button
             matTooltip="Edit training"
@@ -146,6 +177,22 @@
           </button>
         </mat-cell>
       </ng-container>
+
+      <ng-container matColumnDef="actions">
+        <mat-header-cell *matHeaderCellDef >Action</mat-header-cell>
+        <mat-cell *matCellDef="let element" data-label="Action training">
+          <button mat-icon-button (click)="addTrainingsSchedule(element.id)" *ngIf="!!roleAdmin">
+            <mat-icon>add</mat-icon>
+          </button>
+          <button mat-icon-button (click)="editTrainings(element.id)" *ngIf="!!roleAdmin">
+            <mat-icon>edit</mat-icon>
+          </button>
+          <button mat-icon-button (click)="view(element.id)">
+            <mat-icon>mouse</mat-icon>
+          </button>
+        </mat-cell>
+      </ng-container>
+
       <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
       <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
     </mat-table>

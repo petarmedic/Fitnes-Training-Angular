@@ -90,9 +90,9 @@ const SHOPPING_CART = gql`
   }
 `;
 
-const OBRADI_ZAHTEV_ZA_KARTICU = gql`
-  mutation obradiZahtevZaKarticu($obrada: Boolean!, $idKorisnik: Int!) {
-    obradiZahtevZaKarticu(obrada: $obrada, idKorisnik: $idKorisnik)
+const PROCESS_REQUEST_FOR_CARD = gql`
+  mutation processCard($process: Boolean!, $idUser: Int!) {
+    processCard(process: $process, idUser: $idUser)
   }
 `;
 
@@ -207,8 +207,8 @@ const WORKOUT_ROOMS = gql`
 `;
 
 const TRAININGS = gql`
-  query trainings($filter: String, $priceFrom: Int, $priceTo: Int, $sort: String) {
-    trainings(filter: $filter, priceFrom: $priceFrom, priceTo: $priceTo, sort: $sort) {
+  query trainings($priceFrom: Int, $priceTo: Int) {
+    trainings(priceFrom: $priceFrom, priceTo: $priceTo) {
       id
       prices
       name
@@ -288,6 +288,7 @@ const VIEW_RESERVATION = gql`
     viewReservation(shoppingCart: $shoppingCart) {
       id
       confirmation
+      point
       trainingSchedule {
         dateTime
         workoutRoom {
@@ -295,6 +296,7 @@ const VIEW_RESERVATION = gql`
         }
         training {
           name
+          prices
         }
       }
     }
@@ -312,6 +314,9 @@ const PROFIL = gql`
       phoneNumber
       dateBirth
       username
+      loyaltyCard{
+        point
+      }
     }
   }
 `;
@@ -325,9 +330,13 @@ const USER = gql`
       phoneNumber
       dateBirth
       username
+      loyaltyCard{
+        point
+      }
     }
   }
 `;
+
 const ALL_USERS = gql`
 query allUsers{
   allUsers{
@@ -372,32 +381,32 @@ const DELETE_USER = gql`
   }
 `;
 
-const ZAHTEVI_ZA_KARTICU = gql`
-  query zahteviZaKarticu {
-    zahteviZaKarticu {
+const REQUESR_FOR_CARD = gql`
+  query requestForCard {
+    requestForCard {
       id
-      ime
-      prezime
+      name
+      lastName
       email
-      adresa
-      brojTelefona
-      datumRodjenja
-      korisnickoIme
+      adress
+      phoneNumber
+      dateBirth
+      username
     }
   }
 `;
 
-const ZAHTEVAJ_KARTICU = gql`
-  query zahtevajKarticu {
-    zahtevajKarticu {
-      poruka
+const REQUEST_CARD = gql`
+  query requestCard {
+    requestCard {
+      message
     }
   }
 `;
 
 export {
-  ZAHTEVI_ZA_KARTICU,
-  ZAHTEVAJ_KARTICU,
+  REQUESR_FOR_CARD,
+  REQUEST_CARD,
   REGISTER,
   LOGIN,
   ALL_USERS,
@@ -421,5 +430,5 @@ export {
   SHOPPING_CART,
   PROCESS_SHOPPING_CART,
   PROFIL,
-  OBRADI_ZAHTEV_ZA_KARTICU,
+  PROCESS_REQUEST_FOR_CARD,
 };

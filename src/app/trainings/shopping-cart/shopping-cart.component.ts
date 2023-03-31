@@ -60,24 +60,33 @@ export class ShoppingCartComponent implements OnInit {
 
 
   process(accepted) {
-    this.apollo
-      .mutate({
-        mutation: PROCESS_SHOPPING_CART,
-        variables: {
-          accepted: accepted,
-        },
-      })
-      .subscribe(
-        (data) => {
-          this.toastr.success("Sacuvano!");
-          localStorage.removeItem("shoppingcartReload");
-          localStorage.removeItem("reservationReload");
-        },
-        (error) => {
-          this.toastr.error("Nije moguce izvrsiti akciju!");
-        }
-      );
+    const confirmed = confirm("Da li ste sigurni da želite da nastavite?");
+    
+    if (confirmed) {
+      this.apollo
+        .mutate({
+          mutation: PROCESS_SHOPPING_CART,
+          variables: {
+            accepted: accepted,
+          },
+        })
+        .subscribe(
+          (data) => {
+            this.toastr.success("Proces!");
+            localStorage.removeItem("shoppingcartReload");
+            localStorage.removeItem("reservationReload");
+            setTimeout(() => {
+              location.reload();
+            }, 1000);
+
+          },
+          (error) => {
+            this.toastr.error("Nije moguće izvršiti akciju!");
+          }
+        );
+    }
   }
+  
 
 
 }

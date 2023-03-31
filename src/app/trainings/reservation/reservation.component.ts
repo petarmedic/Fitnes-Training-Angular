@@ -12,9 +12,9 @@ import { VIEW_RESERVATION } from 'src/app/graphql.queries';
   styleUrls: ['./reservation.component.css']
 })
 export class ReservationComponent implements OnInit {
-
+  discountPrice: number;
   reservations: any = null;
-  displayedColumns: string[] = ["dateTime", "workoutRoom", "training"];
+  displayedColumns: string[] = ["dateTime", "workoutRoom", "training", "calculatedValue"];
   dataSource = new MatTableDataSource<any>(this.reservations);
 
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
@@ -47,7 +47,16 @@ export class ReservationComponent implements OnInit {
           const res = response.data.viewReservation;
 
           this.reservations = res;
-          this.dataSource = new MatTableDataSource<any>(res);
+       //   this.discountPrice = response.data.viewReservation.trainingSchedule.training.prices * response.data.viewReservation.point / 100
+         // Pozovite funkciju calculateValue za svaki element u nizu reservations
+         this.reservations = this.reservations.map((element) => {
+          return {
+            ...element,
+            calculatedValue: this.calculateValue(element)
+          };
+        });
+        this.dataSource = new MatTableDataSource<any>(this.reservations);
+
           this.dataSource.paginator = this.paginator;
         },
         (error) => {
@@ -55,5 +64,12 @@ export class ReservationComponent implements OnInit {
         }
       );
   }
+
+  calculateValue(element: any) {
+    const discountPercent = element.point * 5;
+    const discountedPrice = element.trainingSchedule.training.prices * (1 - discountPercent / 100);
+    return discountedPrice.toFixed(2); // zaokružite vrednost na dve decimale
+  }
+  
 
 }

@@ -18,18 +18,17 @@
           element.datePost
         }}</mat-cell>
       </ng-container>
-  
+
       <ng-container matColumnDef="user">
         <mat-header-cell mat-header-cell *matHeaderCellDef
           >User</mat-header-cell
         >
-        <mat-cell mat-cell *matCellDef="let element" data-label="User">{{
-          element.anonymous
-            ? "ANONIMNO"
-            : element.user.name + " " + element.user.lastName
-        }}</mat-cell>
+        <mat-cell mat-cell *matCellDef="let element" data-label="User">
+      {{    element.anonymous ? 'Anonymous' : element.user.name + ' ' + element.user.lastName }}
+        </mat-cell>
       </ng-container>
-  
+
+
       <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
       <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
     </mat-table>

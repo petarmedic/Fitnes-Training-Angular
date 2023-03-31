@@ -21,8 +21,7 @@ export class AllUsersComponent implements OnInit {
     "adress",
     "phoneNumber",
     "dateBirth",
-    "edit",
-    "delete"
+    "actions"
   ];
 
   dataSource = new MatTableDataSource<any>(this.allUsers);

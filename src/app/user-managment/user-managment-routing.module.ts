@@ -3,9 +3,9 @@ import { RouterModule, Routes } from "@angular/router";
 import { AuthenticatedGuard } from "../core/guards/authenticated.guard";
 import { Admin } from "../core/guards/admin.guard";
 import { ProfileComponent } from "./components/profile/profile.component";
-import { ClanskeKarticeZaOdobrenjeComponent } from "./components/clanske-kartice-za-odobrenje/clanske-kartice-za-odobrenje.component";
 import { AllUsersComponent } from "./components/all-users/all-users.component";
 import { EditUserComponent } from "./components/edit-user/edit-user.component";
+import { LoyaltyCardForApprovalComponent } from "./components/loyalty-card-for-approval/loyalty-card-for-approval.component";
 
 const routes: Routes = [
   {
@@ -14,8 +14,8 @@ const routes: Routes = [
     canActivate: [AuthenticatedGuard],
   },
   {
-    path: "clanske-kartice-za-odobrenje",
-    component: ClanskeKarticeZaOdobrenjeComponent,
+    path: "loyalty-card-for-approval",
+    component: LoyaltyCardForApprovalComponent,
     canActivate: [Admin],
   },
   {

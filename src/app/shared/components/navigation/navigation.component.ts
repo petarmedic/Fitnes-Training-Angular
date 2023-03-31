@@ -1,5 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { FormControl } from "@angular/forms";
+import { ActivatedRoute } from "@angular/router";
 import { LocalStorageService } from "../../service/local-storage-service";
 
 @Component({
@@ -11,8 +12,10 @@ export class NavigationComponent implements OnInit {
   mode = new FormControl("push");
   roleUser: Boolean = false;
   roleAdmin: Boolean = false;
+  hideNavigation = false;
 
-  constructor(private storageService: LocalStorageService) {
+  constructor(private storageService: LocalStorageService,
+    private route: ActivatedRoute) {
     this.storageService.watchStorage().subscribe((role: string) => {
       this.roleUser = false;
       this.roleAdmin = false;
@@ -32,6 +35,7 @@ export class NavigationComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.hideNavigation = this.route.snapshot.data.hideNavigation || false;
     let authorities = JSON.parse(`${localStorage.getItem("role")}`);
     for (const auth of authorities) {
       if (auth === "USER") {

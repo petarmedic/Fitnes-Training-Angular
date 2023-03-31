@@ -19,8 +19,7 @@ export class CommentsForApprovalComponent implements OnInit {
     "text",
     "datePost",
     "user",
-    "accept",
-    "reject",
+    "actions"
   ];
 
   dataSource = new MatTableDataSource<any>(this.comments);
@@ -52,27 +51,35 @@ export class CommentsForApprovalComponent implements OnInit {
       );
   }
 
-
   process(id, process) {
-    this.apollo
-      .mutate({
-        mutation: PROCCES_COMMENT,
-        variables: {
-          idComment: id,
-          approved: process,
-        },
-      })
-      .subscribe(
-        (data) => {
-          this.toastr.success("Processed!");
-          this.comments = this.comments.filter((k) => k.id !== id);
-          this.dataSource = new MatTableDataSource<any>(this.comments);
-          this.dataSource.paginator = this.paginator;
-        },
-        (error) => {
-          this.toastr.error("there was an error sending the query", error);
-        }
-      );
+    if (window.confirm('Are you sure you want to process this comment?')) {
+      this.apollo
+        .mutate({
+          mutation: PROCCES_COMMENT,
+          variables: {
+            idComment: id,
+            approved: process,
+          },
+        })
+        .subscribe(
+          (data) => {
+            this.toastr.success("Processed!");
+            this.comments = this.comments.filter((k) => k.id !== id);
+            this.dataSource = new MatTableDataSource<any>(this.comments);
+            this.dataSource.paginator = this.paginator;
+
+            setTimeout(() => {
+              location.reload();
+            }, 2000);
+          },
+          (error) => {
+            this.toastr.error("there was an error sending the query", error);
+          }
+        );
+    }
   }
+  
+
+
 
 }

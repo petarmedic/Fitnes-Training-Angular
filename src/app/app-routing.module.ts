@@ -39,6 +39,11 @@ const routes: Routes = [
     loadChildren: () =>
       import("./comments/comments.module").then((mod) => mod.CommentsModule),
   },
+  {
+    path: "dashboard",
+    loadChildren: () =>
+      import("./dashboard/dashboard.module").then((mod) => mod.DashboardModule),
+  },
   { path: "page-not-found", component: PageNotFoundComponent },
   { path: "**", redirectTo: "page-not-found", pathMatch: "full" },
 ];

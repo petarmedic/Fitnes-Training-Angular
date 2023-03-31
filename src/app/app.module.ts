@@ -15,6 +15,9 @@ import { TrainingsModule } from "./trainings/trainings.module";
 import { CommentsModule } from "./comments/comments.module";
 import { MatTableModule } from "@angular/material/table";
 import { MatSortModule } from "@angular/material/sort";
+import { MatInputModule } from "@angular/material/input";
+import { MatFormFieldModule } from "@angular/material/form-field";
+import { MatDialogModule } from "@angular/material/dialog";
 
 
 @NgModule({
@@ -37,6 +40,9 @@ import { MatSortModule } from "@angular/material/sort";
     GraphQLModule,
     TrainingsModule,
     CommentsModule,
+    MatInputModule,
+    MatFormFieldModule,
+    MatDialogModule,
   ],
   providers: [NgxSpinnerService],
   bootstrap: [AppComponent],

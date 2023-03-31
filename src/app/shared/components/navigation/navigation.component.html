@@ -1,6 +1,6 @@
 <mat-sidenav-container class="example-container" position="end">
   <mat-sidenav-content position="end">
-    <mat-toolbar>
+    <mat-toolbar *ngIf="roleUser || roleAdmin">
       <div>
         <button
           *ngIf="roleUser || roleAdmin"
@@ -29,6 +29,16 @@
         Prijava
       </button>
     </mat-toolbar>
+
+    <button
+    mat-button
+    *ngIf="!!roleAdmin"
+    [routerLink]="['/dashboard/home']"
+    routerLinkActive="active-route"
+  >
+    Home
+  </button>
+
 
     <button
     mat-button
@@ -93,6 +103,14 @@
   Create Training
 </button>
 
+<button
+mat-button
+*ngIf="!!roleAdmin"
+[routerLink]="['/user/loyalty-card-for-approval']"
+routerLinkActive="active-route"
+>
+Loyalty card
+</button>
 <button
 mat-button
 *ngIf="!!roleAdmin || !!roleUser"
