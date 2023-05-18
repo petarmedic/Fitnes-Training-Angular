@@ -6,8 +6,22 @@
 	bottom: 0;
 	left: 0;
 	right: 0;
+	
+	
 }
 
+.mat-toolbar {
+	background-color: #ADD8E6;
+  }
+
+.navigation-container {
+	display: flex;
+	justify-content: center;
+	background-color: #ADD8E6;
+  }
+  
+ 
+  
 
 
 

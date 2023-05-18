@@ -30,7 +30,12 @@
     "ngx-toastr": "^14.1.0",
     "rxjs": "~6.6.0",
     "tslib": "^2.3.0",
-    "zone.js": "~0.11.4"
+    "zone.js": "~0.11.4",
+    "angular-calendar": "^0.28.0",
+    "angular-calendar-scheduler": "^11.0.7",
+    "date-fns": "2.25.0",
+    "moment-es6": "^1.0.0",
+    "moment": "^2.29.4"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "~12.2.0",

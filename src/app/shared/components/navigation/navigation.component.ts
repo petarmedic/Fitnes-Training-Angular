@@ -13,6 +13,7 @@ export class NavigationComponent implements OnInit {
   roleUser: Boolean = false;
   roleAdmin: Boolean = false;
   hideNavigation = false;
+  showWorkoutRoomButtons: boolean = false; // dodajemo ovo svojstvo
 
   constructor(private storageService: LocalStorageService,
     private route: ActivatedRoute) {

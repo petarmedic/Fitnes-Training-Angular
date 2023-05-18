@@ -1,7 +1,37 @@
-<div class="welcome">
+<!-- <div class="welcome">
 <h4>Welcome</h4>
 </div>
 <div class="raspored" data-tilt>
   <img src="../../assets/images/RASPORED.jpg" alt="IMG" />
 </div>
-<p>{{ message }}</p>
+<p>{{ message }}</p> -->
+
+<div *ngIf="events">
+  <calendar-scheduler-view
+    [viewDays]="viewDays"
+    [viewDate]="viewDate"
+    [events]="events"
+    [locale]="locale"                               
+    [responsive]="false"
+    [weekStartsOn]="weekStartsOn"
+    [excludeDays]="excludeDays"
+    [startsWithToday]="startsWithToday"
+    [hourSegments]="4"
+    [dayStartHour]="dayStartHour"
+    [dayEndHour]="dayEndHour"
+    [dayModifier]="dayModifier"
+    [hourModifier]="hourModifier"
+    [segmentModifier]="segmentModifier"
+    [eventModifier]="eventModifier"
+    [showEventActions]="true"
+    [showSegmentHour]="true"
+    [zoomEventOnHover]="true"
+    (viewDaysChanged)="viewDaysChanged($event)"
+    (dayHeaderClicked)="dayHeaderClicked($event.day)"
+    (hourClicked)="hourClicked($event.hour)"
+    (segmentClicked)="segmentClicked('Clicked', $event.segment)"
+    (eventClicked)="eventClicked('Clicked', $event.event)"
+    (eventTimesChanged)="eventTimesChanged($event)"
+    [refresh]="refresh">
+  </calendar-scheduler-view>
+</div>

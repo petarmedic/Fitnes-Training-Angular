@@ -24,7 +24,7 @@
       <ng-container matColumnDef="calculatedValue">
         <mat-header-cell mat-header-cell *matHeaderCellDef>Price</mat-header-cell>
         <mat-cell mat-cell *matCellDef="let element" data-label="calculatedValue">
-          {{ element.calculatedValue }}
+          {{ element.calculatedValue | number:'1.2-2'}}
         </mat-cell>
       </ng-container>
 

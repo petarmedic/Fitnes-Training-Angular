@@ -1,1 +1,17 @@
 
+body {
+    position: relative;background-color: #ADD8E6;
+}
+  
+  .background{
+    background-image: url('/assets/images/dm_centar.png');
+    background-size: cover;
+    background-position: center center;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: -1;
+  }
+  

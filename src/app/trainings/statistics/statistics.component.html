@@ -64,7 +64,7 @@
       <ng-container matColumnDef="earnings">
         <mat-header-cell *matHeaderCellDef>Earnings</mat-header-cell>
         <mat-cell *matCellDef="let element" data-label="Earnings">{{
-          element.earnings
+          element.earnings | number:'1.2-2'
         }}</mat-cell>
       </ng-container>
   

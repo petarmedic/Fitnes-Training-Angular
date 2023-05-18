@@ -97,7 +97,7 @@ export class TrainingComponent implements OnInit {
           localStorage.removeItem("reservationReload");
         },
         (error) => {
-          this.toastr.error("Greska prilikom rezervisanja!");
+          this.toastr.error("Booking error!");
         }
       );
   }

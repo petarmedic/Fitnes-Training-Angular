@@ -30,106 +30,49 @@
       </button>
     </mat-toolbar>
 
-    <button
-    mat-button
-    *ngIf="!!roleAdmin"
-    [routerLink]="['/dashboard/home']"
-    routerLinkActive="active-route"
-  >
-    Home
-  </button>
+    <div class="navigation-container">
+      <button mat-button *ngIf="!!roleAdmin" [routerLink]="['/dashboard/home']" routerLinkActive="active-route">
+        Home
+      </button>
+      
+      <button mat-button [matMenuTriggerFor]="trainingMenu" *ngIf="roleUser || roleAdmin">
+        Trainings
+      </button>
+      <mat-menu #trainingMenu="matMenu">
+        <button mat-menu-item routerLink="/trainings/all">All Trainings</button>
+        <button mat-menu-item routerLink="/trainings/create"  *ngIf="!!roleAdmin">Create Training</button>
+        <button mat-menu-item routerLink="/trainings/statistics"  *ngIf="!!roleAdmin">Statistics</button>
+      </mat-menu>
+      
+      <button mat-button [matMenuTriggerFor]="workoutRoomMenu" *ngIf="roleAdmin">
+        Workout Rooms
+      </button>
+      <mat-menu #workoutRoomMenu="matMenu">
+        <button mat-menu-item routerLink="/workout-room/create">Add Workout Room</button>
+        <button mat-menu-item routerLink="/workout-room/all">View Workout Rooms</button>
+      </mat-menu>
+    
+      <button mat-button *ngIf="!!roleAdmin" [routerLink]="['/user/all-users']" routerLinkActive="active-route">
+        Users
+      </button>
+    
+      <button mat-button *ngIf="!!roleAdmin" [routerLink]="['/user/loyalty-card-for-approval']" routerLinkActive="active-route">
+        Loyalty card
+      </button>
+    
+      <button mat-button *ngIf="!!roleAdmin" [routerLink]="['/comments/comments-for-approval']" routerLinkActive="active-route">
+        Comments
+      </button>
 
-
-    <button
-    mat-button
-    *ngIf="!!roleAdmin"
-    [routerLink]="['/comments/comments-for-approval']"
-    routerLinkActive="active-route"
-  >
-    Comments
-  </button>
-
-  <button
-  mat-button
-  *ngIf="!!roleAdmin"
-  [routerLink]="['/trainings/statistics']"
-  routerLinkActive="active-route"
->
-  Statistics
-</button>
-
-    <button
-    mat-button
-    *ngIf="!!roleAdmin"
-    [routerLink]="['/user/all-users']"
-    routerLinkActive="active-route"
-  >
-    Users
-  </button>
-
-  <button
-  mat-button
-  *ngIf="!!roleAdmin"
-  [routerLink]="['/workout-room/all']"
-  routerLinkActive="active-route"
->
-  Workout Rooms
-  </button>
-
-  <button
-  mat-button
-  *ngIf="!!roleAdmin"
-  [routerLink]="['/workout-room/create']"
-  routerLinkActive="active-route"
->
-  Create Workout Room
-</button>
-
-<button
-  mat-button
-  *ngIf="!!roleAdmin || !!roleUser"
-  [routerLink]="['/trainings/all']"
-  routerLinkActive="active-route"
->
-  All Trainings
-</button>
-
-<button
-  mat-button
-  *ngIf="!!roleAdmin"
-  [routerLink]="['/trainings/create']"
-  routerLinkActive="active-route"
->
-  Create Training
-</button>
-
-<button
-mat-button
-*ngIf="!!roleAdmin"
-[routerLink]="['/user/loyalty-card-for-approval']"
-routerLinkActive="active-route"
->
-Loyalty card
-</button>
-<button
-mat-button
-*ngIf="!!roleAdmin || !!roleUser"
-[routerLink]="['/trainings/shopping_cart']"
-routerLinkActive="active-route"
->
-Shopping Cart
-</button>
-
-
-<button
-mat-button
-*ngIf="!!roleAdmin || !!roleUser"
-[routerLink]="['/trainings/reservations']"
-routerLinkActive="active-route"
->
-Bookings
-</button>
-
+      <button mat-button *ngIf="!!roleAdmin || !!roleUser" [routerLink]="['/trainings/shopping_cart']" routerLinkActive="active-route">
+        Shopping Cart
+      </button>
+    
+      <button mat-button *ngIf="!!roleAdmin || !!roleUser" [routerLink]="['/trainings/reservations']" routerLinkActive="active-route">
+        Bookings
+      </button>
+    </div>
+    
     <div class="mt-8vh">
       <router-outlet></router-outlet>
     </div>
