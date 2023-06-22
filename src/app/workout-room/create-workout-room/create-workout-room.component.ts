@@ -22,7 +22,7 @@ export class CreateWorkoutRoomComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  kreirajSalu() {
+  createWorkoutRoom() {
     this.apollo
       .mutate({
         mutation: CREATE_WORKOUTROOM,
@@ -34,6 +34,9 @@ export class CreateWorkoutRoomComponent implements OnInit {
       .subscribe(
         (data) => {
           this.toastr.success("Woorkout Room succesfully created!");
+          setTimeout(() => {
+            location.reload();
+          }, 500);
           this.router.navigate(["workout-room/all"]);
         },
         (error) => {

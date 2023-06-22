@@ -26,7 +26,12 @@ export class LoginComponent implements OnInit {
   { }
 
   ngOnInit() {
-    this.role = JSON.parse(`${localStorage.getItem("role")}`)[0];
+    this.role = JSON.parse(`${localStorage.getItem("role")}`)?.[0];
+    if (this.role === "USER" || this.role === "ADMIN") {
+      this.router.navigate(["/trainings/all"]);
+    }else{
+      this.router.navigate(["/auth"]);
+    }
     if(this.role ==="USER") {
       this.roleUser = true;
     } else if (this.role=== "ADMIN") {
@@ -48,21 +53,25 @@ export class LoginComponent implements OnInit {
         .valueChanges.subscribe(
           (response) => {
             const res = response.data.login;
+            if (!res) {
+              this.toastr.error("Unable to log in. The user has been blocked.");
+              return;
+            }
             console.log(res);
             localStorage.setItem("token", res.token);
             localStorage.setItem("username", res.username);
             localStorage.setItem("email", res.email);
             localStorage.setItem("role", JSON.stringify(res.authorities));
             this.storageService.roleChanged(JSON.stringify(res.authorities));
-            this.toastr.success("Uspešan login!");
-            this.router.navigate(["home"]);
+            this.toastr.success("Successful login!");
+            this.router.navigate(["/trainings/all"]);
           },
           (error) => {
-            this.toastr.error("there was an error sending the query", error);
+            this.toastr.error("Enter the correct username and password!", error);
           }
         );
     } else {
-      this.toastr.error("Morate uneti username i šifru!");
+      this.toastr.error("You must enter a username and password!");
     }
   }
 }

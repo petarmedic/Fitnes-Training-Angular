@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CREATE_TRAINING } from 'src/app/graphql.queries';
 import { Apollo } from "apollo-angular";
 import { ToastrService } from "ngx-toastr";
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-create-training',
@@ -18,7 +19,7 @@ export class CreateTrainingComponent implements OnInit {
   name: string;
   photo: string;
 
-  constructor(private toastr: ToastrService, private apollo: Apollo) { }
+  constructor(private toastr: ToastrService, private apollo: Apollo, private router: Router) { }
 
   ngOnInit(): void {
   }
@@ -41,7 +42,11 @@ export class CreateTrainingComponent implements OnInit {
       })
       .subscribe(
         (data) => {
-          this.toastr.success("Create!");
+          this.toastr.success("Created!");
+          setTimeout(() => {
+            location.reload();
+          }, 1000);
+          this.router.navigate(["trainings/all"]);
         },
         (error) => {
           this.toastr.error("Error add training!");

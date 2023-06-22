@@ -20,6 +20,7 @@ export class StatisticsComponent implements OnInit  {
   dateTo: string = "";
 
   displayedColumns: string[] = [
+    "date",
     "numberReservation",
     "earnings",
     "trainer",
@@ -52,7 +53,6 @@ export class StatisticsComponent implements OnInit  {
       .valueChanges.subscribe(
         (response) => {
           const res = response.data.statistics;
-          console.log(res);
           this.statistics = res;
           this.dataSource = new MatTableDataSource<any>(res);
           this.dataSource.paginator = this.paginator;
@@ -90,7 +90,6 @@ export class StatisticsComponent implements OnInit  {
       .valueChanges.subscribe(
         (response) => {
           const res = response.data.statistics;
-          console.log(res);
           this.statistics = res;
           this.dataSource = new MatTableDataSource<any>(res);
           this.dataSource.paginator = this.paginator;

@@ -16,7 +16,7 @@
       </ng-container>
   
       <ng-container matColumnDef="acept">
-        <mat-header-cell *matHeaderCellDef>Acept</mat-header-cell>
+        <mat-header-cell *matHeaderCellDef>Accept</mat-header-cell>
         <mat-cell *matCellDef="let element" data-label="acept">
           <button
             (click)="process(element.id, true)"
@@ -28,7 +28,7 @@
         </mat-cell>
       </ng-container>
       <ng-container matColumnDef="reject">
-        <mat-header-cell *matHeaderCellDef>reject</mat-header-cell>
+        <mat-header-cell *matHeaderCellDef>Reject</mat-header-cell>
         <mat-cell *matCellDef="let element" data-label="Reject">
           <button
             (click)="process(element.id, false)"

@@ -43,7 +43,6 @@ export class CommentsForTrainingComponent implements OnInit {
       .valueChanges.subscribe(
         (response) => {
           const res = response.data.commentForTraining;
-          console.log(res + "AAAAAAAAA")
           this.comments = res;
           this.dataSource = new MatTableDataSource<any>(res);
           this.dataSource.paginator = this.paginator;

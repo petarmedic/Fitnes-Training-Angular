@@ -71,7 +71,6 @@ export class TrainingsComponent implements OnInit {
       .valueChanges.subscribe(
         (response) => {
           const res = response.data.trainings;
-          console.log(res);
           this.trainings = res;
           this.dataSource = new MatTableDataSource<any>(res);
           this.dataSource.paginator = this.paginator;
@@ -95,7 +94,6 @@ export class TrainingsComponent implements OnInit {
       .valueChanges.subscribe(
         (response) => {
           const res = response.data.trainings;
-          console.log(res);
           this.trainings = res;
           this.dataSource = new MatTableDataSource<any>(res);
           this.dataSource.paginator = this.paginator;

@@ -51,14 +51,14 @@
                   id="comment"
                   name="comment"
                   [(ngModel)]="text"
-                  placeholder="Unesite vas komentar ovde..."
+                  placeholder="Enter your comment here..."
                 ></textarea>
               </mat-form-field>
             </div>
           </div>
           <div class="grid-2">
             <div class="form-group">
-              <mat-form-field class="w-100" appearance="outline">
+              <mat-form-field  appearance="outline">
                 <mat-label>Rate</mat-label>
                 <mat-select
                   name="rating"
@@ -86,6 +86,7 @@
               class="primary-button"
               (click)="comment()"
               style="margin-left: 10px"
+              
             >
             Save
             </button>

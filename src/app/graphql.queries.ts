@@ -245,6 +245,7 @@ const STATISTICS = gql`
       earnings
       trainer
       nameTraining
+      date
     }
   }
 `;
@@ -297,9 +298,16 @@ const VIEW_RESERVATION = gql`
         training {
           name
           prices
+          trainingDuration
         }
       }
     }
+  }
+`;
+
+const DELETE_RESERVATION = gql`
+  mutation deleteReservation($idReservation: Int!) {
+    deleteReservation(idReservation: $idReservation)
   }
 `;
 
@@ -431,4 +439,5 @@ export {
   PROCESS_SHOPPING_CART,
   PROFIL,
   PROCESS_REQUEST_FOR_CARD,
+  DELETE_RESERVATION
 };

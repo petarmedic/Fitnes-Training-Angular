@@ -38,7 +38,6 @@ export class EditUserComponent implements OnInit {
       .valueChanges.subscribe(
         (response) => {
           const res = response.data.user;
-          console.log(response.data);
           this.name = res.name;
           this.lastName = res.lastName;
           this.email = res.email;
@@ -55,6 +54,36 @@ export class EditUserComponent implements OnInit {
 
 
   editUser() {
+    const isValidDateFormat = (dateString) => {
+      const dateRegex = /^\d{4}-\d{2}-\d{2}$/;
+      return dateRegex.test(dateString);
+    };
+    if (!isValidDateFormat(this.dateBirth)) {
+      this.toastr.error("Invalid date format! Please use the format 'YYYY-MM-DD'.");
+      return false;
+    }
+    const parts = this.dateBirth.split('-');
+    const year = parseInt(parts[0], 10);
+    const month = parseInt(parts[1], 10);
+    const day = parseInt(parts[2], 10);
+
+    if (month < 1 || month > 12) {
+      this.toastr.error("Invalid month! Month must be between 1 and 12.");
+      return false;
+    }
+
+    const maxDays = new Date(year, month, 0).getDate();
+    if (day < 1 || day > maxDays) {
+      this.toastr.error("Invalid day! Please provide a valid day for the given month and year.");
+      return false;
+    }
+  
+    const currentYear = new Date().getFullYear();
+    if (year < 1900 || year > currentYear) {
+      this.toastr.error("Invalid year! Year must be between 1900 and the current year.");
+      return false;
+    }
+
     this.apollo
       .mutate({
         mutation: EDIT_USER,
@@ -71,13 +100,18 @@ export class EditUserComponent implements OnInit {
       })
       .subscribe(
         (data) => {
+
           this.toastr.success("Save!");
+          setTimeout(() => {
+            location.reload();
+          }, 500);
         },
         (error) => {
-          this.toastr.error("Error edit user!");
+          this.toastr.error("Error editing user!");
         }
       );
   }
+  
 
 
 }

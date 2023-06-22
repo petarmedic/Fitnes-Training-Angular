@@ -40,7 +40,6 @@ export class ProfileComponent implements OnInit {
       })
       .valueChanges.subscribe(
         (response) => {
-          console.log(response.data);
           this.user = response.data.profil;
           this.loyaltyCardPoint = response.data.profil.loyaltyCard.point
           this.loyaltyCardPoint = Math.max(0, response.data.profil.loyaltyCard.point);
@@ -65,7 +64,6 @@ export class ProfileComponent implements OnInit {
       })
       .valueChanges.subscribe(
         (response) => {
-          console.log(response.data);
        //   this.toastr.success(response.data.requestCard.message);
           if(response.data.requestCard.message === "Successfully"){
             this.toastr.success(response.data.requestCard.message);

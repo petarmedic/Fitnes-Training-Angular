@@ -43,12 +43,11 @@ export class ReservationComponent implements OnInit {
       })
       .valueChanges.subscribe(
         (response) => {
-          console.log(response.data);
           const res = response.data.viewReservation;
-
           this.reservations = res;
-       //   this.discountPrice = response.data.viewReservation.trainingSchedule.training.prices * response.data.viewReservation.point / 100
-         // Pozovite funkciju calculateValue za svaki element u nizu reservations
+          res.forEach(reservation => {
+          });
+
          this.reservations = this.reservations.map((element) => {
           return {
             ...element,
@@ -68,7 +67,7 @@ export class ReservationComponent implements OnInit {
   calculateValue(element: any) {
     const discountPercent = element.point * 5;
     const discountedPrice = element.trainingSchedule.training.prices * (1 - discountPercent / 100);
-    return discountedPrice.toFixed(2); // zaokružite vrednost na dve decimale
+    return discountedPrice.toFixed(2); // round the value to two decimal places
   }
   
 

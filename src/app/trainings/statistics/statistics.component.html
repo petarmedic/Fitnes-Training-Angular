@@ -60,6 +60,13 @@
           element.numberReservation
         }}</mat-cell>
       </ng-container>
+
+      <ng-container matColumnDef="date">
+        <mat-header-cell *matHeaderCellDef mat-sort-header [appSort]="dataSource">Date and Time</mat-header-cell>
+        <mat-cell *matCellDef="let element" data-label="Date">{{
+          element.date
+        }}</mat-cell>
+      </ng-container>
   
       <ng-container matColumnDef="earnings">
         <mat-header-cell *matHeaderCellDef>Earnings</mat-header-cell>
@@ -72,10 +79,10 @@
       <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
     </mat-table>
   
-    <!-- <mat-paginator
+    <mat-paginator
       [pageSizeOptions]="[10, 20, 30]"
       showFirstLastButtons
-    ></mat-paginator> -->
+    ></mat-paginator>
   </div>
   
 

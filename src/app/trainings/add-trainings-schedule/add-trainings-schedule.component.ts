@@ -43,9 +43,6 @@ export class AddTrainingsScheduleComponent implements OnInit {
   }
 
   createTrainingSchedule() {
-    console.log(this.trainingId + "ID TRAINING");
-    console.log(this.workoutRoomId+ "ID WORKOUT ROOM");
-    console.log(this.dateTime+ "ID WORKOUT ROOM");
     this.apollo
       .mutate({
         mutation: CREATE_TRAINING_SCHEDULE,

@@ -44,20 +44,20 @@ export class RegistrationComponent implements OnInit {
       !this.user.username
     ) {
       this.toastr.error(
-        "Ime, prezime, email, telefon, korisnickoIme i lozinka su obavezna polja!"
+        "Name, Last Name, Email, Phone Number, Username and password are required fields!"
       );
       return false;
     } else if (this.user.password.length < 5) {
-      this.toastr.error("Lozinka mora da sadrži minumum 5 karaktera!");
+      this.toastr.error("The password must contain at least 5 characters!");
       return false;
     } else if (this.user.password != this.user.password2) {
-      this.toastr.error("Lozinke se ne podudaraju!");
+      this.toastr.error("Passwords do not match!");
       return false;
     } else if (!this.isValidEmail()) {
-      this.toastr.error("Email nije validan!");
+      this.toastr.error("The email is not valid!");
       return false;
     } else if (!this.isValidPhone(this.user.phoneNumber)) {
-      this.toastr.error("Telefon nije validan!");
+      this.toastr.error("The phone number is not valid!");
       return false;
     }
     return true;
@@ -83,9 +83,8 @@ export class RegistrationComponent implements OnInit {
         })
         .subscribe(
           (data) => {
-            console.log(data);
             this.toastr.success(
-              "Uspešna registracija! Administracija ce aktivirati nalog u roku od 24h."
+              "Successful registration!"
             );
             this.router.navigate(["/auth"]);
           },

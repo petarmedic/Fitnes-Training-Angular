@@ -7,7 +7,7 @@
     <form #registrationForm="ngForm" autocomplete="off">
       <div class="form-group">
         <mat-form-field appearance="outline">
-          <mat-label>E-mail adress</mat-label>
+          <mat-label>E-mail address</mat-label>
           <input
             matInput
             type="email"
@@ -28,10 +28,10 @@
             <input
               matInput
               type="password"
-              id="lozinka"
-              name="lozinka"
+              id="password"
+              name="password"
               [(ngModel)]="user.password"
-              #lozinka="ngModel"
+              #password="ngModel"
               required
             />
           </mat-form-field>
@@ -42,10 +42,10 @@
             <input
               matInput
               type="password"
-              id="lozinka2"
-              name="lozinka2"
+              id="password2"
+              name="password2"
               [(ngModel)]="user.password2"
-              #lozinka2="ngModel"
+              #password2="ngModel"
               required
             />
           </mat-form-field>
@@ -58,8 +58,8 @@
             <input
               matInput
               type="text"
-              id="ime"
-              name="ime"
+              id="name"
+              name="name"
               [(ngModel)]="user.name"
               required
             />
@@ -71,8 +71,8 @@
             <input
               matInput
               type="text"
-              id="prezime"
-              name="prezime"
+              id="lastName"
+              name="lastName"
               [(ngModel)]="user.lastName"
               required
             />
@@ -87,10 +87,10 @@
               required
               matInput
               type="text"
-              id="brojTelefona"
-              name="brojTelefona"
+              id="phoneNumber"
+              name="phoneNumber"
               [(ngModel)]="user.phoneNumber"
-              #brojTelefona="ngModel"
+              #phoneNumber="ngModel"
               pattern="([+]?\d{1,2}[.-\s]?)?(\d{3}[.-]?){2}\d{3}"
             />
           </mat-form-field>
@@ -99,15 +99,15 @@
       <div class="form-group">
         <mat-form-field appearance="outline">
           <mat-label
-            >Adress (Example: Novi Sad, Bulevar Oslobodjenja 13)</mat-label
+            >Address (Example: Novi Sad, Bulevar Oslobodjenja 13)</mat-label
           >
 
           <input
             required
             matInput
             type="text"
-            id="adresa"
-            name="adresa"
+            id="adress"
+            name="adress"
             [(ngModel)]="user.adress"
           />
         </mat-form-field>
@@ -118,8 +118,8 @@
           <input
             matInput
             type="text"
-            id="korisnickoIme"
-            name="korisnickoIme"
+            id="username"
+            name="username"
             [(ngModel)]="user.username"
             required
           />
@@ -132,8 +132,8 @@
           <input
             matInput
             type="date"
-            id="datumRodjenja"
-            name="datumRodjenja"
+            id="dateBirth"
+            name="dateBirth"
             [(ngModel)]="user.dateBirth"
             required
           />
@@ -142,14 +142,14 @@
 
       <div class="center">
         <button class="primary-button" (click)="register()">
-          Registrujte se
+          Register
         </button>
         <br />
         <br />
         <div class="w-300 center">
-          <span class="desc-normal">Imate nalog? &nbsp;</span
+          <span class="desc-normal">You have an account? &nbsp;</span
           ><a class="primary-link" [routerLink]="['/auth']"
-            >Ulogujte se ovde
+            >Log in here
           </a>
         </div>
       </div>

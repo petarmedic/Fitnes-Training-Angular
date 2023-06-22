@@ -1,5 +1,6 @@
 import { Component, OnInit, Inject, LOCALE_ID, HostListener, ViewChild } from '@angular/core';
 import { Subject } from 'rxjs';
+import { MatDialog } from '@angular/material/dialog';
 
 import {
     endOfDay,
@@ -27,6 +28,9 @@ import {
 } from 'angular-calendar';
 
 import { AppService } from '../app.service';
+import { ToastrService } from 'ngx-toastr';
+import { Apollo } from 'apollo-angular';
+import { DELETE_RESERVATION, VIEW_RESERVATION } from 'src/app/graphql.queries';
 
 @Component({
   selector: 'app-home-page',
@@ -44,7 +48,7 @@ export class HomePageComponent implements OnInit {
 
   view: CalendarView = CalendarView.Week;
   viewDate: Date = new Date();
-  viewDays: number = 3;
+  viewDays: number = 7;
   refresh: Subject<any> = new Subject();
   locale: string = 'en';
   hourSegments = 4;
@@ -52,7 +56,7 @@ export class HomePageComponent implements OnInit {
   startsWithToday: boolean = true;
   activeDayIsOpen: boolean = true;
   excludeDays: number[] = []; // [0];
-  dayStartHour: number = 6;
+  dayStartHour: number = 10;
   dayEndHour: number = 22;
 
   minDate: Date = new Date();
@@ -73,7 +77,12 @@ export class HomePageComponent implements OnInit {
           title: 'Delete',
           onClick: (event: CalendarSchedulerEvent): void => {
               console.log('Pressed action \'Delete\' on event ' + event.id);
+              this.confirmDelete(event.id, event.start);
           }
+          
+
+          
+
       },
       {
           when: 'cancelled',
@@ -88,8 +97,10 @@ export class HomePageComponent implements OnInit {
   events: any;
 
   @ViewChild(CalendarSchedulerViewComponent) calendarScheduler: any;
+    reservations: any;
 
-  constructor(@Inject(LOCALE_ID) locale: string, private dateAdapter: DateAdapter, private appService: AppService) {
+  constructor(@Inject(LOCALE_ID) locale: string, private dateAdapter: DateAdapter, private appService: AppService, private toastr: ToastrService,
+  private apollo: Apollo, private dialog: MatDialog) {
       this.locale = locale;
 
       // this.dayModifier = ((day: SchedulerViewDay): void => {
@@ -114,7 +125,55 @@ export class HomePageComponent implements OnInit {
   ngOnInit(): void {
       this.appService.getEvents(this.actions)
           .then((events: CalendarSchedulerEvent[]) => this.events = events);
+      
   }
+
+
+delete(id, start) {
+    const currentDateTime = new Date();
+    const oneHourBeforeStart = new Date(start);
+    oneHourBeforeStart.setHours(oneHourBeforeStart.getHours() - 1);
+  
+    if (currentDateTime < oneHourBeforeStart) {
+      this.apollo
+        .mutate({
+          mutation: DELETE_RESERVATION,
+          variables: {
+            idReservation: id,
+          },
+        })
+        .subscribe(
+          (data) => {
+            this.toastr.success("Deleted!");
+            setTimeout(() => {
+              location.reload();
+            }, 1000);
+          },
+        );
+    } else {
+      this.toastr.error(
+        "It is not possible to delete the training that starts in 1 hour or earlier!"
+      );
+    }
+  }
+  
+
+  
+  
+  
+
+  confirmDelete(id, start) {
+    if (confirm('Are you sure you want to delete this?')) {
+      // if the user has confirmed the deletion
+      this.delete(id, start);
+      
+    } else {
+      // if the user has not confirmed the deletion
+      return;
+    }
+  }
+
+ 
 
   viewDaysOptionChanged(viewDays: number): void {
       console.log('viewDaysOptionChanged', viewDays);

@@ -13,7 +13,7 @@ export class NavigationComponent implements OnInit {
   roleUser: Boolean = false;
   roleAdmin: Boolean = false;
   hideNavigation = false;
-  showWorkoutRoomButtons: boolean = false; // dodajemo ovo svojstvo
+  showWorkoutRoomButtons: boolean = false; // add
 
   constructor(private storageService: LocalStorageService,
     private route: ActivatedRoute) {
@@ -31,13 +31,14 @@ export class NavigationComponent implements OnInit {
           }
         }
       }
-      console.log("listener" + this.roleUser + " " + this.roleAdmin);
+
     });
   }
 
   ngOnInit() {
     this.hideNavigation = this.route.snapshot.data.hideNavigation || false;
     let authorities = JSON.parse(`${localStorage.getItem("role")}`);
+    if (authorities && Array.isArray(authorities)) {
     for (const auth of authorities) {
       if (auth === "USER") {
         this.roleUser = true;
@@ -45,7 +46,7 @@ export class NavigationComponent implements OnInit {
         this.roleAdmin = true;
       }
     }
-    console.log(this.roleUser + " " + this.roleAdmin);
+  }
   }
 
   logout() {

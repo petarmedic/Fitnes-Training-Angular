@@ -43,7 +43,6 @@ export class AllUsersComponent implements OnInit {
         (response) => {
           const res = response.data.allUsers;
           this.allUsers = res;
-          console.log(response.data);
           this.dataSource = new MatTableDataSource<any>(res);
           this.dataSource.paginator = this.paginator;
         },
@@ -57,29 +56,47 @@ export class AllUsersComponent implements OnInit {
     this.router.navigate(["user/edit-user/" + id]);
   }
 
-  deleteUser(id) {
+  delete(id) {
     console.log(id);
     this.apollo
       .mutate({
         mutation: DELETE_USER,
         variables: {
-          idSala: id,
+          idUser: id,
         },
       })
       .subscribe(
         (data) => {
-          this.toastr.success("Delete!");
+          this.toastr.success("Deleted!");
           this.allUsers = this.allUsers.filter((k) => k.id !== id);
+          this.dataSource.data = this.allUsers;
           this.dataSource = new MatTableDataSource<any>(this.allUsers);
           this.dataSource.paginator = this.paginator;
+          this.dataSource._updateChangeSubscription();
+
         },
         (error) => {
           this.toastr.error(
-            "Error delete user!"
+            "It is not possible to delete User!"
           );
         }
       );
   }
 
+
+
+
+  confirmDelete(id: number) {
+    if (confirm('Are you sure you want to delete this?')) {
+      // if the user has confirmed the deletion
+      this.delete(id);
+      setTimeout(() => {
+        location.reload();
+      }, 500);
+    } else {
+      // if the user has not confirmed the deletion
+      return;
+    }
+  }
 
 }

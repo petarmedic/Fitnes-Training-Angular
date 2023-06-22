@@ -1,60 +1,4 @@
 <div class="table-wrapper box-shadow">
-    <!-- <div class="center bkg-image-auth">
-      <div class="card-wrapper-auth card-wrapper-registration w-1500-auth">
-        <div class="desc-medium">
-          Popunite formu da bi ste filtrirali <b>treninge.</b>
-        </div>
-        <br />
-        <form #registrationForm="ngForm" autocomplete="off">
-          <div class="form-group">
-            <mat-form-field appearance="outline">
-              <mat-label>Prices from</mat-label>
-              <input
-                matInput
-                type="number"
-                id="priceFrom"
-                name="priceFrom"
-                [(ngModel)]="priceFrom"
-              />
-            </mat-form-field>
-          </div>
-  
-          <div class="form-group">
-            <mat-form-field appearance="outline">
-              <mat-label>Price to</mat-label>
-              <input
-                matInput
-                type="number"
-                id="priceTo"
-                name="priceTo"
-                [(ngModel)]="priceTo"
-              />
-            </mat-form-field>
-          </div>
-  
-  
-          <div class="form-group">
-            <mat-form-field class="w-100" appearance="outline">
-              <mat-label>Sort</mat-label>
-              <mat-select
-                name="sort"
-                [value]="sort"
-                [(ngModel)]="sort"
-                #tip="ngModel"
-              >
-                <mat-option *ngFor="let s of sortovi" [value]="s.sort">
-                  {{ s.naziv }}
-                </mat-option>
-              </mat-select>
-            </mat-form-field>
-          </div>
-  
-          <div class="center">
-            <button class="primary-button" (click)="filtriraj()">Filter</button>
-          </div>
-        </form>
-      </div>
-    </div> -->
     <br>
   <form #registrationForm="ngForm" autocomplete="off">
     <div class="form-container">
@@ -87,7 +31,7 @@
       </mat-form-field>
     </div>
       <div class="center">
-        <button class="primary-button" (click)="filtriraj()">Filter</button>
+        <button class="primary-button" (click)="filtriraj()" >Filter</button>
       </div>
   </form>
     
@@ -137,58 +81,20 @@
         }}</mat-cell>
       </ng-container>
   
-      <ng-container matColumnDef="view">
-        <mat-header-cell *matHeaderCellDef>View</mat-header-cell>
-        <mat-cell *matCellDef="let element" data-label="Delete">
-          <button
-            (click)="view(element.id)"
-            mat-button
-            matTooltip="View"
-            
-          >
-            <mat-icon>mouse</mat-icon>
-          </button>
-        </mat-cell>
-      </ng-container>
-  
-      <ng-container matColumnDef="addTrainingsSchedule">
-        <mat-header-cell *matHeaderCellDef >Add training schedule</mat-header-cell>
-        <mat-cell *matCellDef="let element" data-label="addTrainingsSchedule">
-          <button
-            (click)="addTrainingsSchedule(element.id)"
-            mat-button
-            matTooltip="Add training schedule"
-          >
-            <mat-icon>add</mat-icon>
-          </button>
-        </mat-cell>
-      </ng-container>
-      
-      <ng-container matColumnDef="edit" >
-        <mat-header-cell *matHeaderCellDef >Edit</mat-header-cell>
-        <mat-cell *matCellDef="let element" data-label="Edit training">
-          <button
-           
-            (click)="editTrainings(element.id)"
-            mat-button
-            matTooltip="Edit training"
-          >
-            <mat-icon>edit</mat-icon>
-          </button>
-        </mat-cell>
-      </ng-container>
+
 
       <ng-container matColumnDef="actions">
         <mat-header-cell *matHeaderCellDef >Action</mat-header-cell>
         <mat-cell *matCellDef="let element" data-label="Action training">
-          <button mat-icon-button (click)="addTrainingsSchedule(element.id)" *ngIf="!!roleAdmin">
+          <button mat-icon-button (click)="addTrainingsSchedule(element.id)" *ngIf="!!roleAdmin" matTooltip="Add training schedule">
             <mat-icon>add</mat-icon>
           </button>
-          <button mat-icon-button (click)="editTrainings(element.id)" *ngIf="!!roleAdmin">
+          <button mat-icon-button (click)="editTrainings(element.id)" *ngIf="!!roleAdmin" matTooltip="Edit training">
             <mat-icon>edit</mat-icon>
           </button>
-          <button mat-icon-button (click)="view(element.id)">
+          <button mat-icon-button (click)="view(element.id)" matTooltip="View training">
             <mat-icon>mouse</mat-icon>
+            
           </button>
         </mat-cell>
       </ng-container>

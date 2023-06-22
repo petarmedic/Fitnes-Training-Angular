@@ -75,10 +75,10 @@ export class EditTrainingComponent implements OnInit {
       })
       .subscribe(
         (data) => {
-          this.toastr.success("Snimljleno!");
+          this.toastr.success("Successfully!");
         },
         (error) => {
-          this.toastr.error("Greska prilikom kreiranja sale!");
+          this.toastr.error("Error when changing training!");
         }
       );
   }

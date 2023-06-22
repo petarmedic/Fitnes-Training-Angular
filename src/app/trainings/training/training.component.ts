@@ -50,7 +50,6 @@ export class TrainingComponent implements OnInit {
       .valueChanges.subscribe(
         (response) => {
           const res = response.data.training;
-          console.log(response.data);
           this.prices = res.prices;
           this.levelTraining = res.levelTraining;
           this.trainingDuration = res.trainingDuration;
@@ -60,7 +59,6 @@ export class TrainingComponent implements OnInit {
           this.name = res.name;
           this.photo = res.photo;
           this.trainingSchedules = res.trainingSchedules;
-          console.log(res.trainingSchedules);
           this.dataSource = new MatTableDataSource<any>(
             res.trainingSchedules
           );
@@ -90,7 +88,7 @@ export class TrainingComponent implements OnInit {
           if (data["data"].shoppingCart) {
             this.toastr.success("Added to shopping cart!");
           } else {
-            this.toastr.error("Training has already been added to shopping cart!");
+            this.toastr.error("Training has already been added to shopping cart or the training is in the past!");
           }
 
           localStorage.removeItem("shoppingcartReload");

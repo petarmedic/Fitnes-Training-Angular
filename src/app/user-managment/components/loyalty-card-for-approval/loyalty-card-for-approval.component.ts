@@ -32,7 +32,6 @@ export class LoyaltyCardForApprovalComponent implements OnInit {
       .valueChanges.subscribe(
         (response) => {
           const res = response.data.requestForCard;
-          console.log(res);
           this.cards = res;
           this.dataSource = new MatTableDataSource<any>(res);
           this.dataSource.paginator = this.paginator;
@@ -55,10 +54,13 @@ export class LoyaltyCardForApprovalComponent implements OnInit {
       })
       .subscribe(
         (data) => {
-          this.toastr.success("Obradjeno!");
+          this.toastr.success("Processed!");
           this.cards = this.cards.filter((k) => k.id !== id);
           this.dataSource = new MatTableDataSource<any>(this.cards);
           this.dataSource.paginator = this.paginator;
+          setTimeout(() => {
+            location.reload();
+          }, 2000);
         },
         (error) => {
           this.toastr.error("there was an error sending the query", error);

@@ -45,7 +45,6 @@ export class ShoppingCartComponent implements OnInit {
       })
       .valueChanges.subscribe(
         (response) => {
-          console.log(response.data);
           const res = response.data.viewReservation;
 
           this.reservation = res;
@@ -60,7 +59,7 @@ export class ShoppingCartComponent implements OnInit {
 
 
   process(accepted) {
-    const confirmed = confirm("Da li ste sigurni da želite da nastavite?");
+    const confirmed = confirm("Are you sure you want to continue?");
     
     if (confirmed) {
       this.apollo
@@ -81,7 +80,7 @@ export class ShoppingCartComponent implements OnInit {
 
           },
           (error) => {
-            this.toastr.error("Nije moguće izvršiti akciju!");
+            this.toastr.error("The action could not be performed!");
           }
         );
     }

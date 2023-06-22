@@ -38,7 +38,6 @@ export class WorkoutRoomsComponent implements OnInit {
       })
       .valueChanges.subscribe(
         (response) => {
-          console.log(response.data);
           const res = response.data.workoutRooms;
           this.dataSource = new MatTableDataSource<any>(res);
           this.dataSource.paginator = this.paginator;
@@ -70,9 +69,6 @@ export class WorkoutRoomsComponent implements OnInit {
           this.dataSource = new MatTableDataSource<any>(this.workoutRooms);
           this.dataSource.paginator = this.paginator;
           this.dataSource._updateChangeSubscription();
-          setTimeout(() => {
-            location.reload();
-          }, 2000);
         },
         (error) => {
           this.toastr.error(
@@ -84,10 +80,13 @@ export class WorkoutRoomsComponent implements OnInit {
 
   confirmDelete(id: number) {
     if (confirm('Are you sure you want to delete this?')) {
-      // ukoliko je korisnik potvrdio brisanje
+      // if the user has confirmed the deletion
       this.delete(id);
+      setTimeout(() => {
+        location.reload();
+      }, 500);
     } else {
-      // ukoliko korisnik nije potvrdio brisanje
+      // if the user has not confirmed the deletion
       return;
     }
   }
